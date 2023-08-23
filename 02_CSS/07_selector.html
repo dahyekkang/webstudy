@@ -273,15 +273,51 @@
 
   <style>
 
+    /*
+      마우스 반응 선택자
+      1. 요소:hover   요소에 마우스를 가져다 대고 있는 동안
+      2. 요소:active  요소를 마우스로 누르고 있는 동안
+    */
+
     .link > a {
       color: black;
       text-decoration: none;
+    }
+    .link > a:hover {
+      color: orange;
+    }
+    .link > a:active {
+      color: crimson;
     }
 
   </style>
 
   <div class="link">
-    <a href="#">링크</a>
+    <a href="javascript:void(0)">링크</a>
+  </div>
+
+
+  <hr>
+
+
+  <style>
+
+    /* 
+      Pseudo Element(의사 요소)
+      1. 요소::before   요소의 앞에 의사 요소를 추가
+      2. 요소::after    요소의 뒤에 의사 요소를 추가
+    */
+
+    .chain > strong + strong::before {
+      content: "→";
+    }
+
+  </style>
+
+  <div class="chain">
+    <strong>A</strong>
+    <strong>B</strong>
+    <strong>C</strong>
   </div>
 
 </body>
