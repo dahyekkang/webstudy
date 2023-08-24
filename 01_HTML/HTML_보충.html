@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 리스트 -->
+  <div>
+    <ul>
+      <li>운동</li>
+      <ul>
+        <li>축구</li>
+      <ul>
+        <li>공격수</li>
+        <li>수비수</li>
+        <li>골키퍼</li>
+      </ul>
+      <li>야구</li>
+      <ul>
+        <li>투수</li>
+        <li>포수</li>
+        <li>야수</li>
+      </ul>
+    </ul>
+  </ul>
+  </div>
+
+  <div>
+    <dl>
+      <dt>준비물</dt>
+      <dd>
+        <ul>
+          <li>김치</li>
+          <li>참치</li>
+        </ul>
+      </dd>
+      <dt>조리법</dt>
+      <dd>
+        <ol>
+          <li>물을 500cc 넣고 끓인다.</li>
+          <li>김치를 넣는다.</li>
+          <li>참치를 넣는다.</li>
+        </ol>
+      </dd>
+    </dl>
+  </div>
+
+  <div>
+    <ul>
+      <li>사원목록<br>
+        <a href=#>무한스크롤</a><br>
+        <a href=#>페이징</a><br>
+        <a href=#>검색</a>
+      </li>
+      <li><a href=#>계층게시판</a></li>
+      <li><a href=#>블로그</a></li>
+      <li><a href=#>업로드게시판</a></li>
+      <li><a href=#>실시간채팅</a></li>
+    </ul>
+  </div>
+
+
+  <hr>
+
+
+
+  <!-- 테이블 연습1 -->
+  <h1>연습1</h1>
+  <table border>
+    <tr>
+      <td rowspan="5">1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td rowspan="3">10</td>
+      <td>11</td>
+      <td>12</td>
+      <td rowspan="2">13</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td colspan="5">19</td>
+    </tr>
+  </table>
+
+
+
+  <!-- 테이블 연습2 -->
+  <h1>연습2</h1>
+  <table border>
+    <tr>
+      <td colspan="4">1</td>
+      <td rowspan="7">2</td>
+    </tr>
+    <tr>
+      <td rowspan="5">3</td>
+      <td rowspan="4">4</td>
+      <td colspan="2">5</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td rowspan="4">7</td>
+    </tr>
+    <tr>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td colspan="2">10</td>
+    </tr>
+    <tr>
+      <td colspan="4">11</td>
+    </tr>
+  </table>
+
+
+  <style>
+    .b {
+      font-weight: 800;
+      text-align: center;
+    }
+  </style>
+  <!-- 테이블 연습3 -->
+  <h1>연습3</h1>
+  <table border>
+    <tr>
+      <td class="b">이름</td>
+      <td class="b">나이</td>
+      <td class="b">주소</td>
+    </tr>
+    <tr>
+      <td>홍길동</td>
+      <td>20세</td>
+      <td>서울시 마포구 노고산동</td>
+    </tr>
+    <tr>
+      <td class="b">특기</td>
+      <td colspan="2">먹기</td>
+    </tr>
+    <tr>
+      <td rowspan="2"  class="b">신체</td>
+      <td colspan="2">180.0cm</td>
+    </tr>
+    <tr>
+      <td colspan="2">83kg</td>
+    </tr>
+  </table>
+
+
+  <style>
+    .t4 > table > thead > .colname > td {
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .t4 .sale {
+      font-weight: 800;
+      text-align: center;
+    }
+    
+  </style>
+
+  <!-- 연습4 -->
+
+  <!-- 우리 펜션 객실 안내 caption 사용! 테이블에 붙어서 함께 움직임 -->
+  <style>
+    div > div {
+      text-align: center;
+    }
+  </style>
+  <div> 
+    <h1>연습4</h1>
+    <div>우리펜션 객실안내</div>
+    <table border>
+      <thead>
+        <tr class="colname">
+          <td>방이름</td>
+          <td>고객구분</td>
+          <td>정원</td>
+          <td>가격</td>
+        </tr>
+        <tr>
+          <td>콜로라도</td>
+          <td>여성 전용</td>
+          <td rowspan="3">4인실</td>
+          <td rowspan="4">100,000원</td>
+        </tr>
+        <tr>
+          <td rowspan="2">아레나도</td>
+          <td>가족용</td>
+        </tr>
+        <tr>
+          <td>커플용</td>
+        </tr>
+        <tr>
+          <td>엘레나</td>
+          <td>커플 전용</td>
+          <td>2인실</td>
+        </tr>
+        <tr class="sale">
+          <td colspan="4">6월 15일까지 전 객실 50% 할인</td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+
+
+
+  <hr>
+  <!-- 만들기 연습1 -->
+  <h1>연습1</h1>
+  <div>
+    <form method="post">
+      <input type="text" placeholder="example@naver.com" name="id">   <!-- type="text"는 생략 가능-->
+      <input type="password" placeholder="비밀번호" name="password">
+      <button>로그인</button>
+    </form>
+  </div>
+
+
+
+  <hr>
+  
+
+
+  <!-- 만들기 연습2 -->
+  <!-- 폼과 테이블 같이 쓸 때, 폼 안에 테이블을 넣기! -->
+  <h1>연습2</h1>
+  <div>
+    <form method="post">
+      <table>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="아이디" name="id"></td>
+            <td rowspan="2"><button>로그인</button></td>
+          </tr>
+          <tr>
+            <td><input type="password" placeholder="비밀번호" name="pw"></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+
+
+  <hr>
+
+
+
+  <!-- 만들기 연습3 -->
+  <!-- th 태그! -->
+  <!-- reset은 입력된 걸 지우는 게 아니라 초기화 하는 것이다 ! -->
+  <h1>연습3</h1>
+  <div>
+    <form method="post">
+      <table>
+        <caption><strong>개인 정보 작성</strong></caption>
+        <tbody>
+          <tr>
+            <td><label for="name">이름</label></td>
+            <td><input type="text" name="name" id="name"></td>
+          </tr>
+          <tr>
+            <td><label for="mail">메일 주소</label></td>
+            <td><input type="text" name="mail" id="mail"></td>
+          </tr>
+          <tr>
+            <td><label for="contact">연락처</label></td>
+            <td><input type="text" name="contact" id="contact"></td>
+          </tr>
+          <tr>
+            <td><label for="blog">블로그/홈페이지</label></td>
+            <td><input type="text" name="blog" id="blog"></td>
+          </tr>
+          <tr>
+            <th colspan="2">
+              <button>제출하기</button>
+              <input type="reset" value="다시작성">
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+
+  <!-- 만들기 연습4 -->
+
+  <!-- 정상적인 (파일 첨부 포함 되어있는)폼으로 작동하려면 반드시 enctype을 꼭 적어야 한다!!!! -->
+  <h1>연습4</h1>
+  <div>
+    <!-- 파일 첨부가 포함된 form은 method + enctype 필수 작성 -->
+    <!-- form 안에서는 br태그를 쓰는 게 좋지 않다. 그래서 주로 블록영역(자동줄바꿈)인 div를 사용한다!!! -->
+    <form method="post" enctype="multipart/form-data">
+      <div>
+        <label for="id">아이디</label>
+        <input type="text" id="id" name="id">
+      </div>
+    </form>
+
+  </div>
+
+
+
+
+
+</body>
+</html>
