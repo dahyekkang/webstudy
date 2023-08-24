@@ -44,12 +44,11 @@
     2. 문서 내의 모든 요소는 동일한 class를 가질 수 있다.
     3. 동일한 특성을 가지는 요소들은 동일한 class 속성을 가진다.
     4. 하나의 요소가 여러 개의 클래스를 가질 수 있다. (각 class를 공백으로 구분)
-    5. class 선택자
-      .class
   -->
 
   <style>
 
+    /* class 선택자 : .class */
     .green {
       color:green;
     }
@@ -67,8 +66,10 @@
     안녕하세요
   </div>
 
+
   <hr>
 
+  
   <style>
 
     /* 자식 선택자 : 부모 > 자식 */
@@ -131,7 +132,7 @@
 
   </style>
 
-<div class="asia">
+  <div class="asia">
     <p>한국</p>
     <h4>아시아</h4>
     <p>한국</p>
@@ -250,6 +251,7 @@
     .register > p:last-of-type > input[type=radio]:checked + label {
       font-weight: 900;
     }
+
   </style>
 
   <div class="register">
@@ -277,6 +279,8 @@
       마우스 반응 선택자
       1. 요소:hover   요소에 마우스를 가져다 대고 있는 동안
       2. 요소:active  요소를 마우스로 누르고 있는 동안
+
+      * hover와 active 서로 위치를 바꾸면, 마우스에 누르고 있는 동안이 가져다 대고 있는 것에 포함되어 active가 실행되지 않는다(?)
     */
 
     .link > a {
