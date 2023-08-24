@@ -12,8 +12,11 @@
       box-sizing: border-box;
       width: 192px;
       height: 128px;
+      
       background-image: url(../../assets/image/animal10.jpg);
       background-size: 192px 128px;   /* 192px 만 해도 알아서 비율대로 조정된다. 이럴 때 너비만 조정해야지 높이만 조정하는 것은 안 됨! */
+      
+      background: url(../../assets/image/animal10.jpg) center/192px 128px;  /* 단축 속성 : 위치(position)/크기(size) */
     }
   </style>
   <div class="box1"></div>
@@ -28,14 +31,16 @@
       width: 500px;
       height: 380px;
       border: 1px solid gray;
+
       background-image: url(../../assets/image/attach1.png);
       background-repeat: no-repeat;   /* 반복 없음 */
       background-size: auto;          /* 이미지 크기를 그대로 사용 */
-      background-position: center;    /* top/bottom(세로 정렬), left/center/right(가로 정렬) */
+      background-position: right;     /* top/bottom(세로 정렬), left/center/right(가로 정렬) */
+
+      background: url(../../assets/image/attach1.png) no-repeat right/auto;
     }
   </style>
   <div class="box2"></div>
-
 
   <hr>
 
@@ -52,12 +57,92 @@
       background-size: 300px 300px; 이렇게 넣지 말아라! -> 비율 깨짐 !
       */
       background-repeat: no-repeat;
-      background-size: cover; /* css에서 제공하는 메뉴로 원래 비율 유지. 이미지를 늘리거나 자르지 않고 최대한 크게 조정해서 표현 */
+      background-size: contain; /* css에서 제공하는 메뉴로 원래 비율 유지. 
+      contain: 이미지를 늘리거나 자르지 않고 최대한 크게 조정해서 표현
+      cover  : 너비/높이 중 작은 부분을 최대한 여백없이 표시하고 box 밖으로 나간 부분은 자름
+      */
       background-position: center;
+
+
+      background: url(../../assets/image/light2.png) no-repeat center/contain;
     }
   </style>
 
   <div class="box3"></div>
+
+
+
+  <hr>
+
+
+  <style>
+    /* 이미지의 일부만 표시하기 */
+
+    /* 날씨 화면에 띄우기 */
+    .box4 {
+      box-sizing: border-box;
+      width: 115px;
+      height: 115px;
+
+      background-image: url(../../assets/image/weather.png);
+      /* 배경 이미지를 이동 시킨다. */
+      background-position: 0 -291px; /* 가로 세로 순으로 이동, -145px : 배경이 왼쪽/아래쪽으로 145px 이동 */
+
+      background: url(../../assets/image/weather.png) 0 -291px/auto;
+    }
+    
+    
+    /* 자바 로고 화면에 띄우기 */
+    .box5 {
+      box-sizing: border-box;
+      width: 110px;
+      height: 130px;
+
+      background-image: url(../../assets/image/logo.png);
+      background-position: -1170px -175px;
+
+      background: url(../../assets/image/logo.png) -1170px -175px/auto;
+
+    }
+    </style>
+    <div class="box4"></div>
+    <div class="box5"></div>
+
+
+    <hr>
+
+    
+
+  <style>
+    .box6 {
+
+      box-sizing: border-box;
+      width: 640px;
+      height: 480px;
+
+      background-image: url(../../assets/image/architecture2.jpg);
+      background-size: 640px 480px;   /* background-size: 100% */
+      background-color: gray;
+      background-blend-mode: multiply;
+      
+      background: url(../../assets/image/architecture2.jpg) center/640px 480px gray;
+      /* background-blend-mode는 단축속성에 포함되지 않음! */
+
+      font-size: 80px;
+      font-weight: 900;
+      color: white;
+      text-align: center;   /* 가로 가운데 정렬 */
+
+      /* 세로 가운데 정렬 */
+      /* 1) 라인 높이 자체를 이미지 세로 크기로 맞추기 */
+      line-height: 480px;   /* box의 height와 line-height가 동일하면 세로 가운데 정렬 효과가 나타난다.(1줄만 가능) */
+      /* 2) 내부 여백 지정하기 */
+      /* padding-top: 200px; */
+
+    }
+  </style>
+  <div class="box6">~우~와~</div>
+
 
 </body>
 </html>
