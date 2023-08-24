@@ -17,6 +17,7 @@
       border-collapse: collapse;
 
     }
+
     .wrap1 table td {
 
       /* 테이블 테두리는 <td> 태그를 대상으로 처리하는 것이 일반적이다. */
@@ -74,14 +75,26 @@
       </tbody>
     </table>
   </div>
-
   
-
+  
+  
   <hr>
-
-
-
+  
+  
+  
   <style>
+
+    /* 달력 만들기 */
+
+    /* 제목 */
+    .wrap2 > .title {
+      font-weight: 900;
+      text-align: center;
+    }
+    .wrap2 > .title > span {
+      font-size: 48px; 
+      color:blue;
+    }
 
     .wrap2 > table {
       border-collapse: collapse;
@@ -94,7 +107,7 @@
       height: 100px;
       border: 1px solid gray;
       padding: 10px;    /* 내부 여백 */
-      text-align: top;
+      vertical-align: top;
     }
 
     .wrap2 > table > thead td {
@@ -104,22 +117,9 @@
     }
 
 
-    .wrap2 > table td:hover {
-      background-color: orangered;
-    }
-
-
-    .wrap2 > table > tbody td {
-      font-size: 16px;
-    }
-
-    .wrap2 > .title {
-      font-weight: 900;
-      text-align: center;
-    }
-    .wrap2 > .title > span {
-      font-size: 48px; 
-      color:blue;
+    .wrap2 > table > tbody td:hover {
+      background-color: salmon;
+      cursor: pointer;
     }
     
     .prev, .next {
@@ -127,7 +127,7 @@
     }
 
     .holiday {
-      color: red;
+      color: crimson;
     }
 
     .sat {
