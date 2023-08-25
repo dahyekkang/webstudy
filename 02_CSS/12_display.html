@@ -119,11 +119,31 @@
 
 
   <style>
+    /* checkbox를 image로 만들기 (동의하기 버튼 이미지로!) */
+    #agree_all {
+      display: none;  /* 기존 checkbox가 화면에서 사라짐. 존재하지만 더이상 보이지 않는다. label이 있기 때문에 동작은 한다. */
+    }
+    .wrap5 > label {
+      /* 라벨 내의 맨 앞쪽에 여백 : padding 
+      여기에서는 padding을 사용해야 한다! */
+      padding-left: 20px;
 
+      /* 라벨을 오른쪽으로 밀고 라벨 앞에 여백 : margin */
+      /* margin-left: 20px; */
+
+      background-image: url(../../assets/image/check1.png);
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+      background-position: 0 2.5px;
+    }
+    #agree_all:checked + label {    /* 입력상자 선택했을 땐 focus사용, radio나 checkbox를 선택했을 땐 checked 사용. */
+      background-image: url(../../assets/image/check2.png);
+    }
   </style>
 
-  <div>
-    
+  <div class="wrap5">
+    <input type="checkbox" id="agree_all">
+    <label for="agree_all">모두 동의합니다</label>
   </div>
 
 </body>
