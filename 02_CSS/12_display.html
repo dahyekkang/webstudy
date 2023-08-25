@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <style>
+    /* 블록 -> 인라인 (너비 높이 반영X, 줄바꿈X) */
+    .wrap1 > div {
+      display: inline;
+      width: 120px;
+      height: 120px;
+      border: 1px solid gray;
+    }
+  </style>
+
+  <div class="wrap1">
+    <div>블록 -> 인라인</div>
+    <div>블록 -> 인라인</div>
+  </div>
+
+
+
+  <hr>
+
+
+
+  <style>
+    /* 인라인 -> 블록 (너비 높이 반영O, 줄바꿈O) */
+    .wrap2 > span {
+      display: block;
+      width: 120px;
+      height: 120px;
+      border: 1px solid gray;
+    }
+  </style>
+
+  <div class="wrap2">
+    <span>인라인 -> 블록</span>
+    <span>인라인 -> 블록</span>
+  </div>
+
+
+
+  <hr>
+
+
+  
+  <style>
+    /* inline-block : 같은 줄에 배치할 수 있는 블록 요소 */
+    .wrap3 > span {
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      border: 1px solid gray;
+    }
+  </style>
+
+  <div class="wrap3">
+    <span>인라인-블록</span>
+    <span>인라인-블록</span>
+  </div>
+
+
+
+  <hr>
+
+
+
+  <style>
+    /* 
+    display: none; 예제
+    ex) naver로그인창에서 id로그인/일회용 번호/QR코드 중 하나 누르면 나머지 2개는 display:none 처리 
+    */
+
+
+    /* 1920x1280 사진을 가운데 정렬 후 1280x1280 사이즈로 자르기 */
+    .wrap4 > div {
+      width: 128px;
+      height: 128px;
+      border-radius: 20px;    /* 모서리 둥글게 */
+      /* background-size: 100%;     상자의 너비 크기를 100%로 -> 높이는 자동 조정됨 */
+      background-size: cover;
+      background-position: center;
+    }
+    .wrap4 > .box1 {
+      background-image: url(../../assets/image/architecture1.jpg);
+    }
+    .wrap4 > .box2 {
+      background-image: url(../../assets/image/architecture2.jpg);
+    }
+    .wrap4 > .box3 {
+      background-image: url(../../assets/image/architecture3.jpg);
+    }
+
+    .wrap4 > .box2 {
+      /* visibility: hidden; 안 보인다. */
+      /* opacity:0; 안보인다. */
+
+      /* 안 만든 것처럼 없어진다. */
+      display: none;
+    }
+  </style>
+
+
+  <div class="wrap4">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+  </div>
+
+
+
+  <hr>
+
+
+
+  <style>
+
+  </style>
+
+  <div>
+    
+  </div>
+
+</body>
+</html>
