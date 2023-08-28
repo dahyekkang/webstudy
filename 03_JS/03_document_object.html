@@ -145,20 +145,20 @@
 
    // attribute가 아닌, property로 가져오는 것임!
    var male = document.getElementById('male');
-   console.log('type', male.type);
-   console.log('name', male.name);
-   console.log('value', male.value);
-   console.log('id', male.id);
-   console.log('class', male.className);
-   console.log('checked', male.checked);
+   console.log('type',     male.type);
+   console.log('name',     male.name);
+   console.log('value',    male.value);
+   console.log('id',       male.id);
+   console.log('class',    male.className);
+   console.log('checked',  male.checked);
 
    var female = document.getElementById('female');
-   console.log('type', female['type']);
-   console.log('name', female['name']);
-   console.log('value', female['value']);
-   console.log('id',female['id']);
-   console.log('class', female['className']);
-   console.log('checked', female['checked']);
+   console.log('type',     female['type']);
+   console.log('name',     female['name']);
+   console.log('value',    female['value']);
+   console.log('id',       female['id']);
+   console.log('class',    female['className']);
+   console.log('checked',  female['checked']);
 
     // <!-- 태그에 적혀있는 속성은 attribute, 그거를 자바스크립트로 불러들여서 저장했을 때 속성은 property -->
 
@@ -174,8 +174,15 @@
     /*
       CSS 처리하기
       1. 문서 객체의 style 속성을 이용한다.
-      2. 
+      2. style 속성으로 지정한 CSS 속성은 inline 방식으로 적용된다.
+        (JavaScript로 지정한 CSS는 항상 적용된다.)
+      3. style 속성 뒤에 CSS 속성을 작성한다.
+        1) 하이픈(-)을 제거한 뒤 camel case 방식으로 CSS 속성을 바꾼다.   예시) 객체.style.fontSize = '32px'
+        2) CSS 속성을 문자열(string) 형식으로 그대로 사용한다.            예시) 객체.style['font-size'] = '32px'
     */
+    var p5 = document.getElementById('p5');
+    p5.style.fontSize = '32px';
+    p5.style['text-align'] = 'center';
   </script>
 
 
@@ -197,12 +204,43 @@
 
   </ul>
 
+
+  <!-- <script>
+    // setAttrubute활용
+    var site = document.getElementById('site');   
+    site.innerHTML += '<li><a><img></a></li>';
+    site.innerHTML += '<li><a><img></a></li>';
+    site.innerHTML += '<li><a><img></a></li>';
+    document.querySelector('#site li:first-of-type a').setAttribute('href', 'https://www.google.com');
+    document.querySelector('#site li:first-of-type img').setAttribute('src', '../../assets/image/google.png');
+    document.querySelector('#site li:first-of-type img').setAttribute('width', '192px');
+    document.querySelector('#site li:nth-of-type(2) a').setAttribute('href', 'https://www.naver.com');
+    document.querySelector('#site li:nth-of-type(2) img').setAttribute('src', '../../assets/image/naver.png');
+    document.querySelector('#site li:nth-of-type(2) img').setAttribute('width', '192px');
+    document.querySelector('#site li:last-of-type a').setAttribute('href', 'https://www.daum.com');
+    document.querySelector('#site li:last-of-type img').setAttribute('src', '../../assets/image/daum.png');
+    document.querySelector('#site li:last-of-type img').setAttribute('width', '192px');
+  </script> -->
+
   <script>
     var site = document.getElementById('site');
     site.innerHTML += '<li><a href="https://www.google.com/"><img src="../../assets/image/google.png" width="192px"></a></li>';
     site.innerHTML += '<li><a href="https://www.naver.com/"><img src="../../assets/image/naver.png" width="192x"></a></li>';
     site.innerHTML += '<li><a href="https://www.daum.net/"><img src="../../assets/image/daum.png" width="192px"></a></li>';
     site.innerHTML += '<li><a href="https://www.coupang.com/"><img src="../../assets/image/coupang.png" width="192px"></a></li>';
+  </script>
+
+  <!-- 연습3. password 입력 상자를 text 입력 상자로 바꾸기 -->
+  <div>
+    <input type="password" id="pw">
+  </div>
+
+  <script>
+    var pw = document.getElementById('pw');
+    // property로 바꾸기
+    pw.type = 'text';
+    // attribute로 바꾸기
+    pw.setAttribute('type', 'text');
   </script>
 
 
