@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    // 주석
+    /*
+      주석
+    */
+  </script>
+
+  <script>
+    /*
+      JavaScript
+      1. ECMAScript(ES)가 원래 명칭이다. ES5나 ES6을 주로 사용하는데 우리는 섞여있는 형태로 수업을 할 것이다.
+      2. <script> 태그 내부에 작성한다. <script> 태그의 위치는 정해져 있지 않다. (<head>, <body> 모두 가능)
+      3. HTML 구성 요소(element들)의 생성/삭제/수정 작업을 할 수 있다.
+    */
+  </script>
+
+  <script>
+    /*
+      변수(Variable)
+
+      1. 기본 자료형
+        1) number     : 정수/실수 구분이 없다. NaN(Not a Number), Infinity/-Infinity(+0/-0으로 나눌 때 발생)
+        2) string     : 문자/문자열 구분이 없다. 작은 따옴표('')와 큰 따옴표("")를 모두 사용할 수 있다.
+        3) boolean    : true/false
+        4) null       : 변수에 null을 저장한 경우(없는 값을 저장한 경우, 초기화를 위해 저장한 경우)
+        5) undefined  : 변수에 어떤 값도 저장된 적이 없는 경우 (ex)String str;
+
+      2. 특징
+        1) Dynamic type(동적 타입)이다.
+        2) 변수를 선언할 때 자료형이 결정되지 않는다.
+        3) 변수에 값을 저장할 때 자료형이 결정된다.
+        4) 변수에 저장된 값을 바꾸면 자료형도 함께 바뀐다.
+
+      * 자바는 int로 저장하면 int로 저장하고, String으로 저장하면 String으로 저장했는데 자바스크립트는 int a같은 선언 자체가 없다.
+      * 이전에는 변수는 var라고 부르는 것 밖에 없었는데 let, const등이 생겼다.
+      
+      3. 변수 선언 키워드
+                   |  scope            | 변수 선언   | 초기화                   | 재선언  | 용도
+        1) var     |  function level   | 생략 가능   | 생략 가능(undefined)     | 가능    | 일반 변수
+        2) let     |  block level({})  | 생략 불가   | 생략 가능(메모리에 없음) | 불가    | 지역 변수
+        3) const   |  block level({})  | 생략 불가   | 생략 불가                | 불가    | 상수(FINAL)
+
+        * let이나 const가 우리가 알고 있는 선언임.
+        * 선언 안 하고 사용하면 var라고 생각하면 됨.
+        * 변수가 규칙 없이 막 사용됐었는데 ES6에서 let, const가 생기면서 약간의 규칙이 생김.
+        * 상수만들 때 const(constant : 항상 같은 값을 가진다.)를 사용하는 언어가 많다(C언어 등)
+    */
+
+  </script>
+
+  <script>
+    /*
+      JavaScript의 출력 방식
+      1. 경고창                         |  alert(출력메시지)
+      2. 브라우저 화면 출력             |  document.write(출력메시지)
+      3. 콘솔 출력 (F12 -> Console 탭)  |  console.log(출력메시지)
+    */
+
+    /*
+   alert('alert 예시');
+   document.write('<h1>document.write 예시</h1>');
+   console.log('console.log 예시');
+   */
+  </script>
+
+  <script>
+
+    // 변수 선언(초기화가 없으면 undefined 상태)
+    var a;
+    console.log(a);
+
+    // 변수 재선언(값이 저장되면서 타입이 결정됨)
+    var a = 10;   // 10이 저장되면서 type이 number가 됨
+    // typeof 변수명 : 변수명의 타입을 보여준다.
+    console.log(typeof a, a);   // number 10
+
+    // 저장된 값이 바뀌면 타입도 바뀜
+    a = 'tom';
+    console.log(typeof a, a);   // string tom
+
+    // 변수 선언 생략
+    b = true;     // 선언 없이도 변수로 인식됨
+    console.log(typeof b, b);   // boolean true
+ㄴ
+  </script>
+
+</body>
+</html>
