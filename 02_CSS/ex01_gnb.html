@@ -29,15 +29,87 @@
   </style>
 
   <style>
-    /* 부모 자식 관계일 때, 수직방향 -> 수평방향 바꿀 때 float과 clear를 사용하는 방법은 권장하지 않음 고전적으로 사용하던 float + overflow 이용하겠음 */
-
     /* gnb(global navigation bar) 만들기 */
+
+    /* 상단에 붙어있는 거 좀 떼기 */
+    .wrap1 {
+      margin-top: 10px;
+    }
+    
+    /* 부모 자식 관계일 때, 수직방향 -> 수평방향 바꿀 때 float과 clear를 사용하는 방법은 권장하지 않음 고전적으로 사용하던 float + overflow 이용하겠음 */
     .wrap1 > .gnb {
       list-style-type: none;  /* 각 항목 앞의 ● (marker) 없애기 */
+      overflow: hidden;       /* <li> 태그를 수평 배치하기 위해서 설정(부모 태그에 overflow: hidden 주기) */
+      border-top: 1px solid silver;
+      border-bottom: 1.5px solid darkgray;
+      padding-left: 300px;
     }
-  </style>
+    .wrap1 > .gnb > li {
+      float: left;            /* <li> 태그를 수평 배치하기 위해서 설정(자식 태그에 float: left 주기) */
+      
+      /* a 태그는 인라인 요소이기 때문에 블록요소인 li의 크기를 조정 */
+      width: 80px;    /* 각 메뉴의 너비 */
+      height: 40px;   /* 각 메뉴의 높이 */
+    }
+
+    /* a태그의 글씨 영역을 클릭해야만 선택이 된다. 불편해서 display 이용해서 인라인 요소의 크기를 키우겠다.(인라인 -> 블록) */
+    .wrap1 > .gnb > li > a {
+      display: block;         /* 메뉴를 클릭할 수 있는 영역을 키우기 위해서 인라인 요소를 블록 요소로 변경 */       
+      width: 100%;            /* 부모인 <li> 태그 기준 */
+      height: 100%;           /* 부모인 <li> 태그 기준 */
+      text-align: center;     /* 글자 가로 가운데 정렬 */
+      line-height: 40px;      /* line-height 값은 height 값과 같거나 비슷하게 설정해서 글자 세로 가운데 정렬 효과를 줌 */
+    }
+
+    /* 글자 색 바꾸기 */
+    .wrap1 > .gnb > li > a:hover {
+      color: crimson;       /* 마우스를 가져다대면 글자 색상이 변함 */
+    }
+
+    
+    </style>
   
   <div class="wrap1">
+    <ul class="gnb">
+      <li><a href="javascript:void(0)">메뉴1</a></li>
+      <li><a href="javascript:void(0)">메뉴2</a></li>
+      <li><a href="javascript:void(0)">메뉴3</a></li>
+      <li><a href="javascript:void(0)">메뉴4</a></li>
+      <li><a href="javascript:void(0)">메뉴5</a></li>
+    </ul>
+  </div>
+
+
+  <hr>
+
+  <style>
+    .wrap2 > .gnb {
+      list-style-type: none;      /* 각 항목 앞의 ● (marker) 없애기 */
+      display: flex;              /* <li> 태그를 수평 배치하기 위해서 설정(부모 태그에 display: flex 주기) */
+      justify-content: center;    /* 각 항목(<li> 태그)을 flex-container(<ul> 태그)의 가로 가운데에 배치 */
+      /* 세로 가운데 정렬은 item-align */
+      
+      border-top: 1px solid gray; 
+      border-bottom: 1px solid gray;
+    }
+    .wrap2 > .gnb > li {
+      width: 80px;
+      height: 40px;
+    }
+    .wrap2 > .gnb > li > a {
+      display: block;         /* 메뉴를 클릭할 수 있는 영역을 키우기 위해서 인라인 요소를 블록 요소로 변경 */
+      width: 100%;            /* 부모인 <li> 태그 기준 */
+      height: 100%;           /* 부모인 <li> 태그 기준 */
+      text-align: center;     /* 글자 가로 가운데 정렬 */
+      line-height: 40px;      /* line-height 값은 height 값과 같거나 비슷하게 설정해서 글자 세로 가운데 정렬 효과를 줌 */
+    }
+    .wrap2 > .gnb > li > a:focus, a:hover {
+      color: limegreen;
+      border-bottom: 2px solid limegreen;   /* 테두리 아랫쪽에 선? */
+    }
+  </style>
+
+  <div class="wrap2">
     <ul class="gnb">
       <li><a href="javascript:void(0)">메뉴1</a></li>
       <li><a href="javascript:void(0)">메뉴2</a></li>
