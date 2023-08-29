@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  
+  <!-- list의 왼쪽에 ● 쪽에 40px이 차지하는데 그것을 <style> 태그 내에서 없애줄 것임 -->
+  <style>
+    /* CSS 초기화 */
+    /* body, div, ul, li의 공통점 : 사용하기도 했고, 블록 요소이다. */
+    body, div, ul, li {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    /* 밑줄, 글자색 보라색으로 바뀌는 것 정리 */
+    /* black이 사용되는 경우는 거의 없다 보통 거의 gray */
+    a {
+      color: black;           /* 글자색 변경 */
+      text-decoration: none;    /* 밑줄 제거 */
+    }
+    /* 여백이 없어져서 그렇지 앞에 글머리기호 ● 는 그대로 있음 !
+    화면 밖으로 나간 것임. 그거 없애는 건 밑에서 하겠다.(list-style-type) */
+
+  </style>
+
+  <style>
+    /* 부모 자식 관계일 때, 수직방향 -> 수평방향 바꿀 때 float과 clear를 사용하는 방법은 권장하지 않음 고전적으로 사용하던 float + overflow 이용하겠음 */
+
+    /* gnb(global navigation bar) 만들기 */
+    .wrap1 > .gnb {
+      list-style-type: none;  /* 각 항목 앞의 ● (marker) 없애기 */
+    }
+  </style>
+  
+  <div class="wrap1">
+    <ul class="gnb">
+      <li><a href="javascript:void(0)">메뉴1</a></li>
+      <li><a href="javascript:void(0)">메뉴2</a></li>
+      <li><a href="javascript:void(0)">메뉴3</a></li>
+      <li><a href="javascript:void(0)">메뉴4</a></li>
+      <li><a href="javascript:void(0)">메뉴5</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>
