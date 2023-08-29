@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개인정보수정</title>
+</head>
+<body>
+
+  <!-- form -->
+  <form action="login.html" method="get">
+    <!-- table -->
+    <table>
+      <tr>
+        <td>이메일</td>
+        <td>
+          <input type="text"> @
+          <input type="text" list="domain" placeholder="선택 또는 직접입력">
+          <datalist id="domain">
+            <option value="naver.com"></option>
+            <option value="kakao.com"></option>
+            <option value="gmail.com"></option>
+          </datalist>
+        </td>
+      </tr>
+
+      <tr>
+        <td>생일</td>
+        <td>
+          <input type="text" maxlength="4" size="4">년 
+          <input type="text" maxlength="2" size="2">월 
+          <input type="text" maxlength="2" size="2">일
+        </td>
+      </tr>
+
+      <tr>
+        <td>거주도시</td>
+        <td>
+          <select name="location">
+            <option value="seoul">서울</option>
+            <option value="gwanju">광주</option>
+            <option value="deagu">대구</option>
+            <option value="deajeon">대전</option>
+            <option value="busan">부산</option>
+            <option value="ulsan">울산</option>
+            <option value="incheon">인천</option>
+            <option value="etc">기타</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>성별</td>
+        <td>
+          <input type="radio" name="gender" value="male" id="gender_male">
+          <label for="gender_male">남자</label>
+          <input type="radio" name="gender" value="female" id="gender_female">
+          <label for="gender_female">여자</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>관심분야</td>
+        <td>
+          <input type="checkbox" name="interest" value="1" id="travel">
+          <label for="travel">여행</label>
+          <input type="checkbox" name="interest" value="2" id="movie">
+          <label for="movie">영화</label>
+          <input type="checkbox" name="interest" value="4" id="reading">
+          <label for="reading">독서</label>
+          <input type="checkbox" name="interest" value="8" id="music">
+          <label for="music">음악</label>
+          <input type="checkbox" name="interest" value="16" id="nothing">
+          <label for="nothing">관심없음</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>자기소개</td>
+        <td>
+          <textarea rows="5" cols="50"></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <button type="submit">수정완료</button>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+
+</body>
+</html>
