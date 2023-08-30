@@ -97,13 +97,217 @@
       console.log('자기 호출 실행');
     })();
 
-    // 3) 이벤트 리스너로 등록하기
+    // 3) 이벤트 리스너로 등록하기(주로 익명함수 사용)
     document.addEventListener('dblclick', function(){
       console.log('이벤트 리스너 실행');
     });
 
   </script>
 
+
+  <script>
+
+    /*
+      인수와 매개변수
+      1. 매개변수를 선언할 때는 선언 키워드(var, let, const)를 사용하지 않는다. (매개변수는 변수명만 작성한다.)
+      2. 디폴트 매개변수 처리가 가능하다.
+        1) 변수를 선언하고 어떤 값도 저장하지 않으면 undefined값을 가진다.
+        2) 매개변수로 인수를 전달하지 않으면 매개변수는 undefined 값을 가진다.
+        3) 매개변수가 undefined 여부에 따라 매개변수의 초기화 작업을 진행할 수 있다.
+        4) 매개변수에 디폴트값을 직접 지정할 수 있다.
+
+        *
+        function myFunc(a) {...} 일 때,
+        myFunc(10);
+        myFunc('Hello');
+
+        myFunc(); -> a는 undefined 값을 가진다.(매개변수 a로 인수를 전달하지 않으면 a는 undefined 값을 가진다.)
+        모두 가능
+
+        void method(int a = 10){...}
+        method(100);  -> a에 100이 들어간다.
+        method();     -> a에 10이 들어간다.
+        (디폴트 매개변수)
+
+
+      3. 전개 연산자(...)가 존재한다.
+        1) 인수의 개수가 정해지지 않은 경우에 사용한다.
+        2) 매개변수를 배열로 처리한다.
+      
+        java
+        int... a
+        ----------
+        javascript
+        ...a
+
+      4. 인수를 저장하는 arguments 객체가 있다. (잘 사용하지않음)
+        1) 매개변수를 선언하지 않아도 모든 인수는 arguments 객체에 저장된다.
+        2) arguments 객체는 배열과 유사하게 동작한다.
+    */
+
+    // 인수와 매개변수
+    function myFunc3(a) {
+      console.log(a);
+    }
+    myFunc3(10);
+    myFunc3('Hello World');
+    myFunc3(a);
+    var a = true;
+    
+    // 아래의 순서대로 동작한다고 생각하기
+    /*
+    function myFunc3(a){
+      console.log(a);
+    }
+    var a;
+    myFunc3(10);
+    myFunc3('Hello World');
+    myFunc3(a);
+    a = true;
+    */
+   
+    // 인수와 매개변수
+    function myFunc3(a) {
+      console.log(a);
+    }
+    myFunc3(10);
+    myFunc3('Hello World');
+    var a = true;
+    myFunc3(a);
+
+
+    // 익명 함수 - 인수와 매개변수
+    // 일반 익명 함수
+    var myFunc4 = function(b){
+      console.log(b);
+    }
+    myFunc4(100);   // 익명함수를 변수 myFunc4로 선언하여서, myFunc4를 함수처럼 불러서 사용할 수 있음
+    myFunc4('안녕하세요');
+    var b = false;
+    myFunc4(b);
+
+    // 일반 익명 함수 자기 호출
+    (function(c){
+      console.log(c);
+    })(1000);
+
+
+    // 화살표 익명 함수
+    var myFunc5 = (b)=>{
+      console.log(b);
+    }
+    myFunc5(200);
+    myFunc5('반갑습니다');
+    var b = true;
+    myFunc5(b);
+
+    // 화살표 익명 함수 자기 호출
+    ((c)=>{
+      console.log(c);
+    })(2000);
+
+
+    // 디폴트 매개변수
+    function myFunc6(a){
+      if(a === undefined){    // a로 전달된 인수가 없으면 a = 0이다.
+        a = 0;
+      }
+      console.log(a);
+    }
+    myFunc6(10);
+    myFunc6();
+
+    // 디폴트 매개변수(ES6)
+    function myFunc7(a = 0){
+      console.log(a);
+    }
+    myFunc7(10);    // 10 사용
+    myFunc7();      // 0 사용
+
+
+    // 전개 연산자(...)
+    function myFunc8(...a){   // 배열로 처리
+      for(let i = 0; i < a.length; i++){
+        console.log(a[i]);
+      }
+    }
+    myFunc8(1, 2, 3, 4, 5);
+
+    // arguments 객체
+    function myFunc9(){
+      for(let i = 0; i < arguments.length; i++){
+        console.log(arguments[i]);
+      }
+    }
+    myFunc9(6, 7, 8, 9, 10);
+
+  </script>
+
+  <script>
+
+    /*
+      반환(return)
+      1. 반환 타입을 작성하지 않는다.
+      2. return 반환값; 을 통해서 값을 반환할 수 있다.
+      3. return; 을 통해서 함수를 종료할 수 있다.
+
+      java에서는 return 반환값; return; 둘 중 한 가지만 나올 수 있었는데 javascript에서는 둘 중 아무거나 사용 가능
+    */
+
+    function myMax(a, b, c){
+      if(isNaN(a) || isNaN(b) || isNaN(c)){   // a, b, c 중 하나라도 숫자가 아니면(Not a Number) 비교하지 않겠다.
+        return;
+      }
+      let max = a;
+      if(b > max) max = b;
+      if(c > max) max = c;
+      return max;
+    }
+
+    function myMin(a, b, c){
+      if(isNaN(a) || isNaN(b) || isNaN(c)){
+        return;
+      }
+      let min = a;
+      if(b < min) min = b;
+      if(c < min) min = c;
+      return min;
+    }
+
+    function myMedian(a, b, c){
+      if(isNaN(a) || isNaN(b) || isNaN(c)){
+        return;
+      }
+      /*
+      let median;
+      if(a >= b){
+        if(b >= c) median = b;      // c b a
+        else if(a <= c) median = a; // b a c
+        else median = c;            // b c a
+      }
+      else if(a > c) median = a;    // c a b
+      else if(b > c) median = c;    // a c b
+      else median = b;              // a b c
+      */
+
+      // 코드 개선
+      let median;
+      if((a <= b && a >= c) || (a <= c && a >= b)){   // c a b ,  b a c
+        median = a;
+      } else if((b <= a && b >= c) || (b <= c && b >= a)){   // c b a ,  a b c
+        median = b;
+      } else {
+        median = c;
+      }
+      return median;
+    }
+    console.log(myMax(10, 5, 3));
+    console.log(myMax('a', 'hello', true));
+    console.log(myMax(1, 2, 3));
+    console.log(myMin(1, 2, 3));
+    console.log(myMedian(1, 2, 3));
+
+  </script>
   
 
 </body>

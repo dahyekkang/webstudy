@@ -133,19 +133,35 @@
       var y = 10;을 hoisting : var y; y = 10; 나눠서 한다.
     */
 
-    // var 키워드 호이스팅
+    // var 키워드 호이스팅 - 1
     x = 10;
     console.log(x);     // 10
     var x;    // 변수 선언은 다른 코드보다 항상 먼저 처리된다. 이걸 호이스팅이라고 한다.
 
+    // var 키워드 호이스팅 - 2
     console.log(y);     // undefined (var 키워드로 호이스팅 된 변수는 undefined로 초기화된다.)
     var y = 20;         // var y; y = 20; 으로 분리해서 호이스팅된다. var y;가 맨 위로 올라가서 선언부가 먼저 처리된다.
     console.log(y);     // 20
 
+    // var 키워드 호이스팅 - 2 (아래 순서로 실행되는 것으로 이해하기)
+    // var y;            → var 키워드로 호이스팅 된 변수는 undefined로 초기화된다.
+    // console.log(y);   → undefiend
+    // y = 20;           → 20을 저장
+    // console.log(y);   → 20
+    
+    
     // let 키워드 호이스팅
     console.log(z); // Reference Error 발생 (let 키워드로 호이스팅 된 변수는 초기화되지 않기 때문에 접근 시 오류가 발생함)
-    let z = 30;     // var z;가 맨 위로 올라가서 먼저 처리되지만, let키워드로 선언한 변수는 초기화되지 않는다.
+    let z = 30;     // let z; z = 30; 으로 분리해서 호이스팅된다.
     console.log(z);
+
+    // let 키워드 호이스팅(아래 순서로 실행되는 것으로 이해하기)
+    // let z;           → let 키워드로 호이스팅 된 변수는 초기화되지 않는다.
+    // console.log(z);  → Reference Error 발생
+    // z = 30;          → 30을 저장
+    // console.log(z);  → 30
+
+
   </script>
 
 </body>
