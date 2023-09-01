@@ -83,7 +83,7 @@
     /*
       1. 이벤트 대상   : document.getElementById('box')
                          event.target
-                        this
+                         this
       2. 이벤트 타입   : click
       3. 이벤트 리스너 : 익명함수 function(event){}
       4. 이벤트 객체   : event
@@ -138,10 +138,10 @@
   <script>
 
     /*
-      1. 이벤트 대상 : box2
-      2. 이벤트 타입 : click
+      1. 이벤트 대상   : box2
+      2. 이벤트 타입   : click
       3. 이벤트 리스너 : function
-      4. 이벤트 객체 : event
+      4. 이벤트 객체   : event
     */
 
     document.getElementById('box2').addEventListener('click', function(event){
@@ -207,7 +207,7 @@
   <ul id="site">
     <li><a href="https://www.google.com/">구글</a></li>
     <li><a href="https://www.naver.com/">네이버</a></li>
-    <li><a href="https://www.daum.net/">다음</a></li>
+    <li><a href="https://www.daum.net">다음</a></li>
   </ul>
   <script>
     var sites = document.querySelectorAll('#site a');     // sites는 <a> 태그 3개가 저장된 배열이다.
