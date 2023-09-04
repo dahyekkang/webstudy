@@ -79,9 +79,6 @@
     #box2 {
       width: 100px;
       height: 100px;
-      transition-property: all;
-      transition-duration: 10s;
-      background-color: array;
     }
   </style>
   <script>
@@ -89,7 +86,7 @@
     var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple'];
     var timerId = setInterval(function(){
       for(let i = 0; i < colors.length; i++){
-        style.background = colors[i];
+        document.querySelector('.box2').style.backgroundColor = colors[i];
       }
     }, 500);
   </script>

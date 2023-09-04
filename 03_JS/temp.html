@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  // 크롬 확장 프로그램   |   Test CORS
+
+  <script>
+    
+    // 코드가 맞아도 안 된다.
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://gdlms.cafe24.com/uflist/curri/10014/bbs/231_64d09afdc7c01.json', true);
+    xhr.send();
+    xhr.addEventListener('readystatechange', function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          console.log(xhr.responseText);    // network 정책 상, 출처가 다르면 차단된다.
+        }
+      }
+    })
+  </script>
+  
+</body>
+</html>
