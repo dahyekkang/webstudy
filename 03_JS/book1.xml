@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+  <!-- 내용을 태그로 만드는 방법 -->
+  <book>
+    <title>홍길동전</title>
+    <author>허균</author>
+  </book>
+  <book>
+    <title>소나기</title>
+    <author>황순원</author>
+  </book>
+</books>
