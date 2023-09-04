@@ -13,10 +13,10 @@
       비동기(Asynchronous) 처리 방식(싱크?를 맞추지 않겠다. 기본적으로 network에서 나오는 말로, 통신 용어임)
 
       1. 통신(송신/수신, 요청/응답)을 할 때 사용하는 방식이다.
-      2. 요청과 응답이 순서대로 진행되는 "동기(Synchronous)" 처리 방식이 있고,
-         요청과 응답이 순서없이 진행되는 "비동기(Asyschronous)" 처리 방식이 있다.
-      3. 비동기 처리 방식은 요청에 대한 응답이 없어도 계속 요청할 수 있다.
-      4. 응답을 기다리는 시간이 없기 때문에 빠른 통신 방식이다.
+      2. 요청과 응답이 순서대로 진행되는 "동기(Synchronous)" 통신 방식이 있고,
+         요청과 응답이 순서없이 진행되는 "비동기(Asyschronous)" 통신 방식이 있다.
+      3. 비동기 통신 방식은 요청에 대한 응답이 없어도 계속 요청할 수 있다.
+      4. 비동기 통신 방식은 응답을 기다리는 시간이 없기 때문에 동기 통신에 비해서 빠르다.
       5. 순서대로 처리해야 하는 서비스의 경우 문제가 발생할 수 있다.
     */
   </script>
@@ -67,8 +67,9 @@
 
       // 2. 요청 정보 생성
       //    1) 형식 : xhr.open(RequestMethod, URL, Sync/Async);
-      //    2) URL : 요청 URL (서버 경로 작성)
-      //    3) Sync(동기) : false, Async(비동기) : true
+      //      (1) RequestMethod : get 또는 post
+      //      (2) URL : 요청 URL (서버 경로 작성)
+      //      (3) Sync(동기) : false, Async(비동기) : true
       xhr.open('get', 'book1.xml', true);
 
       // 3. 요청
@@ -80,39 +81,30 @@
       //    3) xhr.status     : 응답코드 (200: 성공, 4XX: 클라이언트 측 오류, 5XX: 서버 측 오류)
       //    4) 응답 데이터 형식에 따른 속성(property)
       //      (1) XML  : responseXML
-      //      (2) JSON : responseText
+      //      (2) JSON : responseText -> JSON.parse를 사용하여 String을 Json 형태로 바꿔주어야 한다.
 
       xhr.addEventListener('readystatechange', function(){
 
-      //   if(xhr.readyState === 4 && xhr.status === 200){ // status가 앞에 있으면 status가 2--이 오니까 그 다음 꺼 2번이 랑 비교하
-      //     document.getElementById('xml_response1').textContent = xhr.responseXML;
-      //     //서버측과 클라이언트가 json을 주고받을 때, json데이터는 String의 형태이다.
-      //   }
-      // })
-
-      // if(xhr.readyState === 4) {
-      //   if(xhr.status === 200){
-      //     document.getElementById('xml_response1').textContent = xhr.responseXML;
-      //   }
-      // }
-
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          var data = xhr.responseXML;
-          var str = '';
-          var title =  data.getElementsByTagName('title');
-          var author = data.getElementsByTagName('author');
-          for(let i = 0; i < title.length; i++){
-            str += '<ul>';
-            str += '<li>' + title[i].textContent + '</li>';
-            str += '<li>' + author[i].textContent + '</li>';
-            str += '</ul>';
+        // 서버측과 클라이언트가 json을 주고받을 때, json데이터는 String의 형태이다.
+        
+        // 통신상태 확인 후 응답 코드 확인 해야 한다! (순서)
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            var data = xhr.responseXML;
+            var str = '';
+            var title = data.getElementsByTagName('title');
+            var author = data.getElementsByTagName('author');
+            for(let i = 0; i < title.length; i++){
+              str += '<ul>';
+              str += '<li>' + title[i].textContent + '</li>';
+              str += '<li>' + author[i].textContent + '</li>';
+              str += '</ul>';
+            }
+            document.getElementById('xml_response1').innerHTML = str;
           }
-          document.getElementById('xml_response1').innerHTML = str;
         }
-      }
-    })
-    // 페이지 변화 없이 일부만 바뀌는 -> ajac?에이작...
+      })
+      // 페이지 변화 없이 일부만 바뀌는 -> ajax?에이작...
   })
   </script>
 
@@ -126,6 +118,39 @@
   </div>
   <script>
 
+    document.getElementById('btn_xml_request2').addEventListener('click', function(){
+
+      // 비동기 통신을 수행할 수 있는 객체를 생성
+      var xhr = new XMLHttpRequest();
+
+      // 요청 정보 생성
+      xhr.open('get', 'book2.xml', true);
+
+      // 요청
+      xhr.send();
+
+      // 요청에 대한 응답이 왔는지 검사
+      xhr.addEventListener('readystatechange', function(){
+        // 통신 상태 확인
+        if(xhr.readyState === 4){
+          //응답 상태 확인
+          if(xhr.status === 200){
+            // 받아온 데이터
+            var data = xhr.responseXML;
+            var book = data.getElementsByTagName('book');
+            var str = '';
+            for(let i = 0; i < book.length; i++){
+              str += '<ul>';
+              str += '<li>' + book[i].getAttribute('title') + '</li>';
+              str += '<li>' + book[i].getAttribute('author') + '</li>';
+              str += '</ul>';
+            }
+            document.getElementById('xml_response2').innerHTML = str;
+          }
+        }
+      })
+    })
+
   </script>
 
 
@@ -133,10 +158,193 @@
 
 
   <div class="wrap3">
-    <input type="button" value="JSON요청" id="btn_json_request">
-    <div id="json_response"></div>
+    <input type="button" value="JSON요청1" id="btn_json_request1">
+    <div id="json_response1"></div>
   </div>
   <script>
+
+    document.getElementById('btn_json_request1').addEventListener('click', function(){
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', 'book1.json', true);
+      xhr.send();
+      xhr.addEventListener('readystatechange', function(){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            var data = JSON.parse(xhr.responseText);    // JSON.parse가 없으면 배열이 아닌 String 상태이므로 json데이터로 바꿔주는 작업을 해야함
+            // 문자열 형식의 JSON 데이터 -> JavaScript 객체 JSON.parse
+            var str = '';
+            for(let i = 0; i < data.length; i++){
+              str += '<ul>';
+              str += '<li>' + data[i].title + '</li>';    // data[i].title === data[i]['title']
+              str += '<li>' + data[i].author + '</li>';
+              str += '</ul>';
+            }
+            document.getElementById('json_response1').innerHTML = str;
+          }
+        }  
+      })
+    })
+
+  </script>
+
+
+
+  <hr>
+
+
+  
+  <div class="wrap4">
+    <input type="button" value="JSON요청2" id="btn_json_request2">
+    <div id="json_response2"></div>
+  </div>
+  <script>
+
+    document.getElementById('btn_json_request2').addEventListener('click', function(){
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', 'book2.json', true);
+      xhr.send();
+      xhr.addEventListener('readystatechange', function(){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            var data = JSON.parse(xhr.responseText);
+            var str = '';
+            for(let i = 0; i < data.books.length; i++){
+              str += '<ul>';
+              str += '<li>' + data.books[i].title + '</li>';
+              str += '<li>' + data.books[i].author + '</li>';
+              str += '</ul>';
+            }
+            document.getElementById('json_response2').innerHTML = str;
+          }
+        }
+      })
+    })
+
+  </script>
+
+  <hr>
+
+
+  <!-- 문제1. sfc_web_map.xml 읽어서 테이블로 표시하기(지역명, 날씨, 온도) -->
+  <div class="wrap5">
+    <input type="button" value="날씨읽기" id="btn_get_xml">
+    <input type="button" value="초기화" id="btn_init">
+    <table border="1">
+      <thead>
+        <tr>
+          <td>순번</td>
+          <td>지역명</td>
+          <td>날씨</td>
+          <td>온도</td>
+        </tr>
+      </thead>
+      <tbody id="sfc_web_map"></tbody>
+    </table>
+  </div>
+
+  <script>
+
+    // 날씨읽기
+    document.getElementById('btn_get_xml').addEventListener('click', function(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', 'sfc_web_map.xml', true);
+      xhr.send();
+      xhr.addEventListener('readystatechange', function(){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            var data = xhr.responseXML;
+            var local = data.getElementsByTagName('local');
+            var str = '';
+            for(let i = 0; i < local.length; i++){
+              str += '<tr>';
+              str += '<td>' + (i + 1) + '</td>';
+              str += '<td>' + local[i].textContent + '</td>';
+              str += '<td>' + local[i].getAttribute('desc') + '</td>';
+              str += '<td>' + local[i].getAttribute('ta') + '</td>';
+              str += '</tr>';
+            }
+            document.getElementById('sfc_web_map').innerHTML = str;
+          }
+        }
+      })
+    })
+
+    // 초기화
+    document.getElementById('btn_init').addEventListener('click', function(){
+      document.getElementById('sfc_web_map').innerHTML = '';
+    })
+
+  </script>
+
+
+  <hr>
+
+
+  <!-- 문제2. weather.json 읽어서 테이블로 표시하기(지역명 : "서울 · 인천 · 경기도", 시간, 날씨, 최저온도, 최고온도) -->
+  <div class="wrap6">
+    <input type="button" value="날씨읽기" id="btn_get_json">
+    <div id="weather">
+    </div>
+  </div>
+
+  <script>
+
+    // 날씨읽기
+    document.getElementById('btn_get_json').addEventListener('click', function(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', 'weather.json', true);
+      xhr.send();
+      xhr.addEventListener('readystatechange', function(){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            var resData = JSON.parse(xhr.responseText);
+            var location = resData.rss.channel.item.description.body.location;
+            var rowspan = 0;
+            var tbody = '<tbody>';
+            
+              
+            
+            for(let i = 0; i < location.length; i++){
+              if(location[i].province.startsWith('서울')){
+                var data = location[i].data;
+                rowspan += data.length;
+                for(let j = 0; j < data.length; j++){
+                  tbody += '<tr>';
+                  if(i === 0 && j == 0){
+                    tbody += '<td id="first_row">' + location[i].province + '</td>';
+                  }
+                  if(j === 0){
+                    tbody += '<td rowspan=' + data.length + '>' + location[i].city + '</td>';
+                  }
+                  tbody += '<td>' + data[j].tmEf + '</td>';
+                  tbody += '<td>' + data[j].wf+ '</td>';
+                  tbody += '<td>' + data[j].tmn + '</td>';
+                  tbody += '<td>' + data[j].tmx+ '</td>';
+                  tbody += '</tr>';
+                }
+              }
+            }
+            
+            tbody += '</tbody>';
+
+            var str = '<table border="1">';
+            str += '<thead><tr>';
+            str += '<td>지역</td>';
+            str += '<td>시간</td>';
+            str += '<td>날씨</td>';
+            str += '<td>최저온도</td>';
+            str += '<td>최고온도</td>';
+            str += '</tr></thead>';
+            str += tbody;
+            str += '</table>';
+            document.getElementById('weather').innerHTML = str;
+            document.getElementById('first_row').setAttribute('rowspan', rowspan);
+          }
+        }
+      })
+    })
 
   </script>
 
