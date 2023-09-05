@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+  <!-- 태그 내부 텍스트 -->
+  <p id="p1">Hello World</p>
+  <script>
+    // var p1 = document.getElementById('p1');
+    // console.log(p1.textContent);
+    // p1.textContent = '안녕하세요';
+    // p1.textContent += ' 반갑습니다';
+
+
+    // JavaScript의 textContent 속성 == jQuery의 text() 메소드
+    /*
+                         | JavaScript                  | jQuery
+      -------------------|-----------------------------|--------------------
+      내부텍스트가져오기 | 요소.textContent            | 요소.text()
+      내부텍스트설정하기 | 요소.textContent = '텍스트' | 요소.text('텍스트')
+    */
+    var p1 = $('#p1');
+    console.log(p1.text());
+    p1.text('안녕하세요 반갑습니다.');    // 본문이 바뀜
+
+  </script>
+
+
+  <hr>
+
+
+  <!-- 태그 내부 요소 -->
+  <p id="p2"><strong>Hello World</strong></p>
+  <script>
+    // var p2 = document.getElementById('p2');
+    // console.log(p2.innerHTML);
+    // p2.innerHTML = '<em>안녕하세요</em>'
+    // console.log(p2.innerHTML);
+    // p2.innerHTML += '<mark> 반갑습니다</mark>';
+    // console.log(p2.innerHTML);
+
+    // JavaScript의 innerHTML 속성 == jQuery의 html() 메소드
+    /*
+                         | JavaScript                 | jQuery
+      -------------------|----------------------------|--------------------
+      내부요소가져오기   | 요소.innerHTML             | 요소.html()
+      내부요소설정하기   | 요소.innerHTML = '요소'    | 요소.html('요소')
+    */
+    var p2 = $('#p2');
+    console.log(p2.html());
+    p2.html('<mark>안녕하세요.반갑습니다.</mark>');   // 본문이 바뀜
+  </script>
+
+
+
+  <hr>
+
+
+
+  <!-- 태그 추가 (부모-자식 관계) -->
+
+
+  <hr>
+
+
+
+  <!-- 태그 추가 (형제 관계) -->
+
+
+
+  <hr>
+
+
+
+  <!-- 태그 제거 -->
+
+</body>
+</html>
