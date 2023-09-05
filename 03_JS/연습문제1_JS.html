@@ -303,7 +303,13 @@
   <script>
     // 문제6. images 배열의 임의의 이미지를 배경으로 사용하시오.
     var images = ['animal1.jpg', 'animal2.jpg', 'animal3.jpg', 'animal4.jpg', 'animal5.jpg'];
-    
+    var n = 0;
+    setInterval(function(){
+      var str = '';
+      str += 'url(../../assets/image/' + images[n % 5] + ')';
+      document.getElementById('box6').style.backgroundImage = str;
+      n++;
+    }, 5000);
   </script>
 
 </body>
