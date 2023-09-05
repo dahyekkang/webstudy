@@ -12,9 +12,259 @@
 
   <div id="box" class="wrap"></div>
   <script>
+
+    // 1. 태그로 인식하면 배열
+    var div = $('div');     // getElementsByTagName('div')
+    console.log(div);
     
+    // 2. id로 인식하면 객체
+    var box = $('#box');    // getElementById('box')
+    console.log(box);
+
+    // 3. class로 인식하면 배열
+    var wrap = $('.wrap');  // getElementsByClassName('wrap')
+    console.log(wrap);
+
   </script>
 
+  
+  <div class="ott_wrap">
+    <ul class="ott">
+      <li id="watcha">
+        <a href="#">왓차</a>
+      </li>
+      <li id="coopangplay">
+        <a href="#">쿠팡플레이</a>
+      </li>
+      <li id="netflix">
+        <a href="#">넷플릭스</a>
+      </li>
+      <li id="tving">
+        <a href="#">티빙</a>
+      </li>
+      <li id="wave">
+        <a href="#">웨이브</a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+
+    // 1. 자식
+    var ott = $('.ott_wrap > .ott');        // 자식 선택자
+    console.log(ott);
+
+    var ott = $('.ott_wrap').find('.ott');  // find 메소드 : 자식을 찾는 jQuery 메소드
+    console.log(ott);
+
+    var ott = $('.ott_wrap').children();    // children 메소드 : 지정하는 게 아니라, .ott_wrap의 모든 자식을 찾는 jQuery 메소드
+    console.log(ott);
+
+
+    // 2. 후손
+    var li = $('.ott_wrap li');                     // 후손 선택자
+    console.log(li);
+
+    var li = $('.ott_wrap').find('li');             // finde 메소드 : 자식뿐만 아니라, 후손도 찾는 jQuery 메소드
+    console.log(li);
+
+    var li = $('.ott_wrap').children().children(); // childeren메소드 2번 사용 : .ott_wrap의 자식의 자식
+    console.log(li);
+
+
+    // 3. 모든 형제
+    var sibling = $('#netflix ~ li');             // 모든 형제 선택자 (#netflix 다음 모든 형제)
+    console.log(sibling);
+
+    var sibling = $('#netflix').nextAll('li');    // nextAll 메소드 (#netflix 다음 모든 형제)
+    console.log(sibling);
+    
+    var sibling = $('#netflix').siblings('li');   // siblings 메소드 (#netflix의 모든 형제)
+    console.log(sibling);
+
+    var sibling = $('#netflix').prevAll('li');    // prevAll 메소드 (#netflix 이전 모든 형제)
+    console.log(sibling);
+
+
+    // 4. 인접 형제
+    var sibling = $('#netflix + li');         // 인접 형제 선택자 (#netflix의 다음 형제 하나)
+    console.log(sibling);
+
+    var sibling = $('#netflix').next('li');   // next 메소드 (#netflix의 다음 형제 하나)
+    console.log(sibling);
+
+    var sibling = $('#netflix').prev('li');   // prev 메소드 (#netflix의 이전 형제 하나)
+    console.log(sibling);
+
+    
+    // 5. 부모
+    var parent = $('#netflix').parent();        // 부모
+    console.log(parent);
+
+    var parent = $('#netflix').closest('div');  // 가장 가까운 div 부모
+    console.log(parent);
+
+    var parent = $('#netflix').parents();       // 모든 부모
+    console.log(parent);
+
+  </script>
+
+
+
+  <hr>
+
+
+  <div class="form_wrap">
+    <form id="frm">
+      <div><input type="text" autofocus></div>
+      <div><input type="password"></div>
+      <div>
+        <input type="radio" name="gender" value="man">남자
+        <input type="radio" name="gender" value="woman">여자
+        <input type="radio" name="gender" value="none" checked>선택안함
+      </div>
+      <div>
+        <input type="checkbox" name="hobbies" value="travel">여행
+        <input type="checkbox" name="hobbies" value="tracking">트래킹
+        <input type="checkbox" name="hobbies" value="cycle" checked>사이클
+      </div>
+      <div>
+        <select>
+          <option value="">선택하세요</option>
+          <option value="A" selected>A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <script>
+
+    
+
+  </script>
+
+
+
+  <hr>
+
+
+  <!-- 태그 찾기 연습 -->
+  <div class="post" data-post="1">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove1">
+  </div>
+  <div class="post" data-post="2">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove1">
+  </div>
+  <script>
+  // data-post 속성이 있는 태그를 찾아서 console에 출력하기
+    var target = $('.btn_remove1').parent();
+    console.log(target);
+    var target = $('.btn_remove1').closest('div');
+    console.log(target);
+    var target = $('.btn_remove1').closest('.post');
+    console.log(target);
+    var target = $('.btn_remove1').parents();
+    console.log(target);
+  </script>
+
+
+
+  <hr>
+
+
+
+  <div class="post">
+    <h1 class="title" data-post="1">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove2">
+  </div>
+  <div class="post">
+    <h1 class="title" data-post="2">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove2">
+  </div>
+
+  <script>
+    var target = $('.btn_remove2').siblings('h1');
+    console.log(target);
+    var target = $('.btn_remove2').prev().prev();
+    console.log(target);
+    var target = $('.btn_remove2').prevAll('h1');
+    console.log(target);
+  </script>
+
+
+  <hr>
+
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content" data-post="1">내용1</div>
+    <input type="button" value="삭제" class="btn_remove3">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content" data-post="2">내용2</div>
+    <input type="button" value="삭제" class="btn_remove3">
+  </div>
+  
+  <script>
+    var target = $('.btn_remove3').prev();
+    console.log(target);
+  </script>
+
+
+
+  <hr>
+
+
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove4" data-post="1">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove4" data-post="2">
+  </div>
+
+  <script>
+    var target = $('.btn_remove4');
+    console.log(target);
+  </script>
+
+
+
+  <hr>
+
+
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove5">
+    <input type="hidden" value="1">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove5">
+    <input type="hidden" value="2">
+  </div>
+
+  <script>
+    var target = $('.btn_remove5').next();
+    console.log(target);
+  </script>
+
+  <hr>
   
 </body>
 </html>
