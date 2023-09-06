@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  
+  <div id="box"></div>
+  <script>
+
+    // 객체 생성
+    var obj = {
+      'name': '홍길동',
+      'age': 30
+    };
+
+
+    // 속성(property) 추가 extend() 메소드
+    $.extend(
+      obj,        // 객체 obj에 속성을 추가하겠다.
+      {           // 객체({}를 이용)로 만들어서 넘겨야 한다.
+        'mobile': '010-1111-1111',
+        'address': 'seoul'
+      }
+    )
+
+    // 속성(property) 순회 each() 메소드
+
+    // 1. 속성만 순회하기
+    $.each(obj, function(p){     // obj의 속성 4개를 꺼내서 function을 수행하겠다.
+      // console.log(p);
+      // 마침표 표기법은 여전히 지원되지 않음. 대괄호 표기법 이용.
+      console.log(p, obj.p, obj[p]);   // p는 string 타입이므로 obj.p는 지원하지 않고, obj[p]만 가능하다.     
+    })
+    
+    // p === 'name'
+    // obj.p === obj.'name'     <- (X) 이게 문법의 오류여서 나오지 않음
+    // obj[p] === obj['name']   <- (O) 이건 문법에 맞음
+
+
+    // 2. 속성과 값 모두 순회하기
+    $.each(obj, function(p, value){
+      console.log(p, value);
+    })
+
+
+    /*
+    name
+      홍길동
+    age
+      30
+    mobile
+      010-1111-1111
+    address
+      seoul
+      를 dl tag로 만들고 box에 넣어라.
+    */
+
+    var dl = $('<dl>');
+    $.each(obj, function(p, value){
+      dl.append($('<dt>').text(p));
+      dl.append($('<dd>').text(value));
+    })
+
+    dl.appendTo($('#box'));
+
+  </script>
+
+</body>
+</html>
