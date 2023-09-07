@@ -30,7 +30,7 @@
       width: 1024px;                        /* 전체 양식 너비 */
       height: 1500px;                       /* 전체 양식 높이 */
       display: flex;                        /* left_wrap, right_wrap 좌우로 놓기 */
-      margin: 10px 0;                       /* 입사지원서와 전체 양식 사이 여백 */
+      margin: 10px auto;                       /* 입사지원서와 전체양식 사이 여백, 전체양식 좌우 가운데 정렬 */
     }
 
     /* 왼쪽(left_wrap) */
@@ -42,12 +42,13 @@
 
     /* 사진 */
     .wrap > .left_wrap > .picture {
-      width: 250px;                                           /* 사진 너비 */
-      height: 350px;                                          /* 사진 높이 */
+      width: 220px;                                           /* 사진 너비 */
+      height: 250px;                                          /* 사진 높이 */
       background-image: url(../../assets/image/animal1.jpg);  /* 사진 경로 */
       background-repeat: none;                                /* 사진 반복 X */
       background-size: cover;                                 /* box 밖으로 나간 부분은 자름 */
-      margin: 30px;
+      margin: 30px auto;
+      background-position: -30px;
     }
 
 
@@ -56,7 +57,7 @@
       box-sizing: border-box;
       border: 1px solid gray;
       width: 70%;                            /* 오른쪽 양식 너비 */
-      margin: 10px 20px 0 0;                 /* 오른쪽 양식과 오른쪽 끝 사이, 오른쪽 양식과 입사지원서 사이 여백 */ 
+      margin: 10px 0 0 10px;                  /* 오른쪽 양식과 오른쪽 끝 사이, 오른쪽 양식과 입사지원서 사이 여백 */ 
     }
 
 
