@@ -43,7 +43,7 @@
       height: 100%;
     }
     .doc-main {
-      padding-top: 50px;      /* 윗쪽 여백 */
+      padding-top: 50px;      /* 윗쪽 내부 여백 */
     }
     .login-kakao {
       display: block;         /* 크기 지정을 하기 위해 block요소로 변경 */
@@ -132,6 +132,82 @@
     .inp-choice:checked + .lab-choice .ico-check {    /* 체크박스 체크된 아이콘으로 변경 */
       background-position: -25px 0;      /* 배경에 여러 아이콘이 있음. 오른쪽으로 25, 세로방향은 0만큼 이동 */
     }
+    .confirm-btn {
+      padding-top: 40px;
+      text-align: center;   /* 글자 가운데 정렬 */
+    }
+
+    .btn-g {              /* 로그인, QR코드 로그인 버튼 */
+      display: block;     /* 너비 높이 주기 위해 block요소로 변경 */
+      width: 100%;
+      height: 50px;
+      border-radius: 4px;   /* 모서리 둥글게 다듬기 */
+      font-weight: 500;     /* 글자 두께 */
+      color: #191919;
+      /* 버튼은 원래 세로 가운데 정렬이 읎다. 자동임 */
+    }
+    .btn-g:hover {        /* 버튼에 마우스 대고 있을 때 색 */
+      background-color: #EBEBEB;
+    }
+    .btn-g:active {       /* 버튼을 누르고 있을 때 색 */
+      background-color: #E5E5E5;
+    }
+    .btn-g.highlight {    /* .highlight만 써도 된다. ex) div.ccc div인데 클래스가 ccc인 태그. 이런식으로 쓸 수 있다 */
+      background-color: #FEE500;
+    }
+    .btn-g.highlight:hover {
+      background-color: #FADA0A;
+    }
+    .btn-g.highlight:active {
+      background-color: #F2D00F;
+    }
+
+    .line-or {              /* 또는 줄 */
+      display: block;       /* 너비 주기 위해 block요소로 변경 */
+      width: 100%;
+      padding: 10px 0;      /* 안쪽 여백 상하 15, 좌우 0 */
+    }
+    .line-or::before, .line-or::after {
+      content: '';
+      display: inline-block;    /* 같은 줄에 둘 수 있는데 너비 높이를 줄 수 있는 */
+      width: calc(50% - 35px);
+      height: 1px;
+      background-color: rgba(0,0,0,0.06);
+      margin: 5px;              /* 위아래로 외부여백 6px 추가 */
+    }
+    .txt-or {
+      display: inline-block;  /* 사이에 껴있으니까 글자의 영역을 키워서 양쪽 선 미루기 위함 */
+      width: 40px;
+    }
+
+    .info-user {
+      margin-top: 26px;
+    }
+    /* 왼쪽 오른쪽 찢어서 보내려면 float 사용 ~ ~ ~ */
+    /* float을 주게 되면, size가 엉망이 된다! 그래서 오른쪽(list-user)는 너비를 줄 필요가 있다. */
+    .link-join {      /* 회원가입 */
+      float: left;    /* 왼쪽에 띄운다 */
+    }
+    .list-user {      /* 계정 찾기 & 비밀번호 찾기 */
+      float: right;   /* 오른쪽에 띄운다 */
+      width: 150px;
+      /* 좌우 배치 하고 싶을 때!!! : 부모 요소에 overflow: hidden을 주든 display: flow-root를 주든 하고 자식 요소에 float 속성을 설정 */
+      display: flow-root;
+    }
+    .list-user li::before {   /* li 전에 박스?를 만들어서 선을 만들기 */
+      content: '';
+      float: left;
+      width: 1px;
+      height: 10px;
+      margin: 4px 10px;   /* 상하 4, 좌우 10 */
+      background-color: rgba(0,0,0,0.08);
+    }
+    .list-user li:first-of-type::before {   /* 첫 번째 li의 선은 삭제 */
+      display: none;
+    }
+    .list-user li {
+      float: left;
+    }
 
 
   </style>
@@ -146,7 +222,7 @@
         <div class="doc-title">
           <h1 calss="*tit-service">                <!-- *은 사용 안 한다는 뜻 -->
             <span class="login-kakao">
-              <span class="*ir_wa">Kakao</span>    <!-- 글씨 안 쓰면 검색이 안 됨 -->
+              <span class="*ir_wa">Kakao</span>    <!-- 글씨(Kakao) 안 쓰면 검색이 안 됨 -->
             </span>
           </h1>
         </div>
@@ -172,11 +248,11 @@
                   </div>
                 </div>
                 <div class="confirm-btn">
-                  <button type="submit" class="btn_g highlight submit">로그인</button>
+                  <button type="submit" class="btn-g highlight submit">로그인</button>
                   <span class="line-or">
                     <span class="txt-or">또는</span>
                   </span>
-                  <button type="button" class="btn_g">QR코드 로그인</button>   <!-- 하는 일 없음 하는 일은 자바스크립트로 연결해줘야 함 -->
+                  <button type="button" class="btn-g">QR코드 로그인</button>   <!-- 하는 일 없음 하는 일은 자바스크립트로 연결해줘야 함 -->
                 </div>
               </form>
               <div class="info-user">
