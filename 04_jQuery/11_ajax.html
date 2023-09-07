@@ -206,6 +206,7 @@
       })
     })
 
+    // myFunc2 함수 정의
     function myFunc2(resData){
       var table = $('<table border="1"><thead><tr><td>순번</td><td>제조사</td><td>상품</td><td>가격</td></tr>');
       $.each(resData.products, function(i, elem){
@@ -218,6 +219,90 @@
       })
       $('#box4').append(table);
     }
+
+  </script>
+
+
+
+  <hr>
+
+
+  <!-- 제목(title), 이미지(image + link), 저자(author), 판매가(discount), 출판사(publisher), 출판일(pubdate), ISBN(isbn), 설명(description) -->
+  <!-- 이미지를 클릭하면 링크가 열리도록 표시하기 -->
+  <!-- 설명은 최대 100글자만 표시하기 -->
+
+  <!--
+    ----------------------
+    |          | 제목    |
+    |          | 저자    |
+    |          | 판매가  |
+    |  이미지  | 출판사  |   X  10
+    |          | 출판일  |
+    |          | ISBN    |
+    |          | 설명    |
+    ----------------------
+  -->
+
+  <div id="box5">
+    <button id="btn5">book.xml 가져오기</button>
+  </div>
+
+  <script>
+    $('#btn5').click(function(){
+      $.ajax({
+        /* 요청 */
+        type: 'get',
+        url: 'book.xml',
+        async: true,
+
+        /* 응답 */
+        dataType: 'xml',
+        success: function(resData){
+          $.each($(resData).find('item'), function(i, elem) {
+            var img = $('<div>').addClass('image');
+            img.append($('<a>').attr('href', $(elem).find('link').text()).append($('<img>').attr('src', $(elem).find('image').text())));
+            var content = $('<div>').addClass('content');
+            var ul = $('<ul>');
+            ul.append($('<li>').text($(elem).find('title').text()));
+            ul.append($('<li>').text($(elem).find('author').text()));
+            ul.append($('<li>').text($(elem).find('discount').text()));
+            ul.append($('<li>').text($(elem).find('publisher').text()));
+            ul.append($('<li>').text($(elem).find('pubdate').text()));
+            ul.append($('<li>').text($(elem).find('isbn').text()));
+            
+            var description = $('<li>').text($(elem).find('description').text());
+            var description100 = description.substring(0, 100);
+            ul.append(description100);
+
+            content.append(ul);
+            var book = $('<div>').addClass('book');
+            book.append(img);
+            book.append(content);
+            $('#box5').append(book);
+          })
+        },
+        error: function(jqXHR){
+          alert("오류");
+        }
+      })
+    })
+
+  </script>
+  <style>
+    .book {
+      box-sizing: border-box;
+      display: flex;
+    }
+  </style>
+
+
+  <hr>
+
+
+  <div id="box6">
+    <button id="btn6">book.json 가져오기</button>
+  </div>
+  <script>
 
   </script>
 
