@@ -14,6 +14,7 @@
   <script>
 
     $('#btn1').click(function(){
+      // 에러 확인하고 싶으면 url을 잘못되게 입력
       $.ajax({
         /* 요청 */
         type: 'get',                  // RequestMethod : get 또는 post
@@ -23,24 +24,204 @@
         /* 응답 */
         dataType: 'xml',              // 응답 데이터의 타입(text, xml, json 등)
         success: function(resData){   // 매개변수 resData로 응답 데이터가 전달됨(resData = xhr.responseXML 또는 resData = xhr.responseText)
-
+          // 기존 목록 제거하기(버튼 누를 때마다 누적 되는 것 없애기 위해)
+          $('#box1').find('ul').remove();
+          // resData에서 <product> 태그만 가져오기
+          var product = $(resData).find('product');   // JavaScript는 var product = resData.getElementsByTagName('product');
+          // resData는 jQuery 객체가 아니어서 $를 이용하여 jQuery객체로 만들어주어야 함
+          $.each(product, function(i, elem){
+            // <ul> 태그를 jQuery 객체로 생성
+            var ul = $('<ul>');
+            // <ul> 태그에 <li> 태그 만들어 넣기
+            ul.append($('<li>').text($(elem).find('model').text()));
+            ul.append($('<li>').text($(elem).find('maker').text()));
+            ul.append($('<li>').text($(elem).find('price').text()));
+            // <div id="box1">에 <ul> 태그 넣기
+            $('#box1').append(ul);
+          })
         },
-        error: function(){
-
+        //jqXHR은 객체인데, 그 안에 속성이 들어있어서 꺼내쓰면 됨.
+        error: function(jqXHR){   // jqXHR 객체 : 에러에 관한 정보를 담고 있는 객체
+          // <div id="box1"> 태그를 jQuery 객체로 가져옴
+            var box1 = $('#box1');
+            box1.append($('<div>').text('응답코드 ' + jqXHR.status));
+            box1.append($('<div>').text('응답코드 텍스트 ' + jqXHR.statusText));
+            box1.append($('<div>').text('응답 텍스트 ' + jqXHR.responseText)); // 보기 어려우면 text -> html로 변경
         }
       })
     })
 
   </script>
+
+
+  <hr>
+
+
   
-  <div id="box1">
-    <button id="btn1">XML요청1</button>
+  <div id="box2">
+    <button id="btn2">XML요청2</button>
   </div>
   <script>
+    $('#btn2').click(function(){
+      $.ajax({
+        /* 요청 */
+        type: 'get',
+        url: 'product2.xml',
+        async: true,
+        /* 응답 */
+        dataType: 'xml',
+        success: function(resData){
+          $('#box2').find('div').remove();
+          // <div class="product_list"> 태그를 jQuery 객체로 만들기
+          var productList = $('<div>').addClass('product_list');
+          // resData에서 <product> 태그를 가져온 뒤 순환하기
+          $.each($(resData).find('product'), function(i, elem){
+            // <div class="product"> 태그를 jQuery 객체로 만들기
+            var div = $('<div>').addClass('product');
+            // <div class="product"> 태그에 model, maker, price 속성(attribute)값 넣기
+            div.append($('<strong>').text($(elem).attr('model')));
+            div.append($('<em>').text($(elem).attr('maker')));
+            div.append($('<mark>').text($(elem).attr('price')));
+            // <div class="product_list"> 태그에 <div class="product"> 태그 넣기
+            productList.append(div);
+            // <div id="box2"> 태그에 <div class="product_list"> 태그 넣기
+            $('#box2').append(productList);
+          })
 
+        },
+        error: function(jqXHR){
+          alert(jqXHR.status + '(' + jqXHR.statusText + ')');
+        }
+      })
+    })
 
 
   </script>
+  <style>
+    #box2 div {
+      box-sizing: border-box;
+      border: 1px solid gray;
+    }
+    #box2 .product_list {
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+    }
+    #box2 .product {
+      width: 100px;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    #box2 .product * {
+      display: block;   /* 줄바꿈을 위해 블록요소로 바꿔주기 */
+    }
+
+  </style>
+
+  <hr>
+
+
+  <div id="box3">
+    <button id="btn3">JSON요청1</button>
+  </div>
+  <script>
+    $('#btn3').click(function(){
+      $.ajax({
+        /* 요청 */
+        type: 'get',
+        url: 'product1.json',
+        async: true,
+
+        /* 응답 */
+        dataType: 'json',
+        success: function(resData){   // resData = JSON.parse(xhr.responseText) 처리돼서 넘어온 상태임!
+          myFunc1(resData);
+        },
+        error: function(jqXHR){
+          alert(jqXHR.status + '(' + jqXHR.statusText + ')');
+        }
+      })
+    })
+    // myFunc1 함수 정의
+    function myFunc1(resData){
+      $('#box3').find('ul').remove();
+      var productList = $('<div>').addClass('product_list');
+      $.each(resData, function(i, elem){
+        var ul = $('<ul>').addClass('product');
+        ul.append($('<li>').text(elem.maker));
+        ul.append($('<li>').text(elem.price));
+        ul.append($('<li>').text(elem.model));
+        productList.append(ul);
+      })
+      $('#box3').append(productList);
+    }
+
+  </script>
+  <style>
+    #box3 * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    #box3 .product_list {
+      width: 400px;
+      display: flex;
+      justify-content: space-around;
+      border: 1px solid crimson;
+    }
+    #box3 .product {
+      list-style-type: none;
+      width: 100px;
+      padding: 20px 10px;
+      text-align: center;
+      border: 1px solid gray;
+    }
+
+  </style>
+
+
+  <hr>
+
+
+  <div id="box4">
+    <button id="btn4">JSON요청2</button>
+  </div>
+  <script>
+    $('#btn4').click(function(){
+      $.ajax({
+        /* 요청 */
+        type: 'get',
+        url: 'product2.json',
+        async: true,
+
+        /* 응답 */
+        dataType: 'json',
+        success: function(resData){   // resData = JSON.parse(xhr.responseText)
+          $('#box4').find('table').remove();
+          myFunc2(resData);
+        },
+        error: function(jqXHR){
+          alert(jqXHR.status + '(' + jqXHR.statusText + ')');
+        }
+      })
+    })
+
+    function myFunc2(resData){
+      var table = $('<table border="1"><thead><tr><td>순번</td><td>제조사</td><td>상품</td><td>가격</td></tr>');
+      $.each(resData.products, function(i, elem){
+        var tr = $('<tr>');
+        tr.append($('<td>').text(i+1));
+        tr.append($('<td>').text(elem.maker));
+        tr.append($('<td>').text(elem.model));
+        tr.append($('<td>').text(elem.price));
+        table.append(tr);
+      })
+      $('#box4').append(table);
+    }
+
+  </script>
+
+
   
 </body>
 </html>
