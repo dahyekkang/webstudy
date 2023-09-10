@@ -7,20 +7,29 @@
   <style>
     /* 문제. CSS 작업을 수행하시오. */
     /* 입사지원서 */
-    .header {
-      box-sizing: border-box;               /* 상자 속성 : width, height는 테두리(border)까지의 크기 */
-      width: 1024px;                        /* 배경 너비 */
-      height: 50px;                         /* 배경 높이 */
 
+    /* CSS 초기화 */
+    * {
+      box-sizing: border-box;               /* 상자 속성 : width, height는 테두리(border)까지의 크기 */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 입사지원서 */
+    .header {
+      width: 1000px;                        /* 배경 너비 */
+      height: 60px;                         /* 배경 높이 */
       background-color: rgb(47, 199, 47); /* 배경색 */
-      border-right: 15px solid gray;      /* 오른쪽 회색 줄 */
-      padding-left: 10px;                   /* 글자 살짝 오른쪽으로 */
-      line-height: 50px;                    /* 글자 가운데 정렬 */
+      border-right: 24px solid gray;      /* 오른쪽 회색 줄 */
+      line-height: 60px;                    /* 글자 가운데 정렬 */
       margin: auto;                         /* 배경 전체 가운데 정렬 */
-      margin-top: 100px;
+      margin-top: 30px;                     /* 배경과 맨 위 사이 여백 */
+      position: relative;                   /* 배경 이동 가능하게 속성 변경 */
+      text-indent: 20px;                    /* 글자 살짝 오른쪽으로 */
+      left: -12px;                          /* 배경 전체 왼쪽으로 이동(오른쪽 회색 줄 때문에) */
     }
     .header > h1 {
-      font-size: 20px;                      /* 글자 크기 */
+      font-size: 30px;                      /* 글자 크기 */
       color: white;                       /* 글자색 */
     }
 
@@ -28,9 +37,9 @@
     .wrap {
       margin: 50px 20px;
       width: 1024px;                        /* 전체 양식 너비 */
-      height: 1500px;                       /* 전체 양식 높이 */
+      height: 1050px;                       /* 전체 양식 높이 */
       display: flex;                        /* left_wrap, right_wrap 좌우로 놓기 */
-      margin: 10px auto;                       /* 입사지원서와 전체양식 사이 여백, 전체양식 좌우 가운데 정렬 */
+      margin: 10px auto 20px;               /* 입사지원서와 전체양식 사이 여백 10, 전체양식 좌우 가운데 정렬, 전체양식 아래 여백 20px */
     }
 
     /* 왼쪽(left_wrap) */
@@ -40,25 +49,83 @@
       margin: 10px 20px 0 0;                 /* 왼쪽 양식과 왼쪽 끝 사이, 왼쪽 양식과 입사지원서 사이 여백 */ 
     }
 
+    /* 왼쪽 내용(left_info) */
+    .wrap > .left_wrap > .left_info {
+      margin: 0 33px;                       /* 왼쪽 내용 위아래 0, 좌우 33px 여백 */
+    }
+
+    .wrap > .left_wrap > .left_info > dl {
+      margin-left: 10px;                      /* dl태그 왼쪽 여백 10 */
+    }
+    
+    .wrap > .left_wrap > .left_info > dl > dt {
+      display: list-item;                     /* 글머리 기호 사용하기 위해 display 조정 */
+      list-style-type: '▶ ';                  /* 글머리 기호 설정 */
+      font-size: 20px;                        /* 글자 크기 키우기 */
+      font-weight: 700;                       /* 글자 두께 늘리기 */
+      margin-bottom: 20px;                    /* 아랫쪽 여백 20px */
+    }
+    .wrap > .left_wrap > .left_info > dl > dd {
+      margin-bottom: 50px;
+      position: relative;
+      left: -5px
+    }
+
+    .wrap li {
+      list-style-type: none;
+    }
+
     /* 사진 */
     .wrap > .left_wrap > .picture {
-      width: 220px;                                           /* 사진 너비 */
-      height: 250px;                                          /* 사진 높이 */
+      width: 225px;                                           /* 사진 너비 */
+      height: 280px;                                          /* 사진 높이 */
       background-image: url(../../assets/image/animal1.jpg);  /* 사진 경로 */
       background-repeat: none;                                /* 사진 반복 X */
       background-size: cover;                                 /* box 밖으로 나간 부분은 자름 */
-      margin: 30px auto;
-      background-position: -30px;
+      margin: 35px auto;                                      /* 위아래 30px 여백, 좌우 가운데 정렬 */
+      margin-bottom: 60px;
     }
 
 
     /* 오른쪽(right_wrap) */
     .wrap > .right_wrap {
-      box-sizing: border-box;
       border: 1px solid gray;
-      width: 70%;                            /* 오른쪽 양식 너비 */
+      width: 65%;                            /* 오른쪽 양식 너비 */
       margin: 10px 0 0 10px;                  /* 오른쪽 양식과 오른쪽 끝 사이, 오른쪽 양식과 입사지원서 사이 여백 */ 
+      padding: 20px 30px;
     }
+    .wrap .line {
+      content: 'ㅁㅁ';
+      height: 3px;
+      width: 620px;
+      background-color: rgb(56, 145, 139);
+    }
+
+    .wrap > .right_wrap > .section > dl {
+      margin-top: 25px;
+      margin-left: 40px;
+      margin-bottom: 40px;
+    }
+    .wrap > .right_wrap > .section > dl > dt {
+     list-style-type: '◎ ';
+     display: list-item;
+    }
+    .wrap > .right_wrap > .section > dl > dd {
+      margin-left: 100px;
+      margin-bottom: 20px;;
+    }
+
+    .wrap > .right_wrap > .section > ul {
+      margin-top: 25px;
+    }
+
+    .wrap > .right_wrap > .section > ul > li {
+      display: list-item;
+      list-style-type: "ο ";
+      margin-left: 40px;
+      margin-top: 10px;
+    }
+
 
 
   </style>

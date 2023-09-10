@@ -252,12 +252,30 @@
       }
     ]
     $.each(Student, function(i, elem){
+      var total = 0;
+      var avg = 0;
+      var grade;
       var tr = $('<tr>');
       tr.append($('<td>').text(elem.name));
       tr.append($('<td>').text(elem.kor));
       tr.append($('<td>').text(elem.eng));
       tr.append($('<td>').text(elem.mat));
-      
+      total += elem.kor + elem.eng + elem.mat;
+      avg = total / 3;
+      if(avg >= 90){
+        grade = 'A';
+      } else if(avg >= 80){
+        grade = 'B';
+      } else if(avg >= 70){
+        grade = 'C';
+      } else if(avg >= 60){
+        grade = 'D';
+      } else{
+        grade = 'F';
+      }
+      tr.append($('<td>').text(avg));
+      tr.append($('<td>').text(grade));
+      $('#student_info').append(tr);
     })
 
 
@@ -278,7 +296,11 @@
   <script>
     // 문제6. images 배열의 임의의 이미지를 배경으로 사용하시오.
     var images = ['animal1.jpg', 'animal2.jpg', 'animal3.jpg', 'animal4.jpg', 'animal5.jpg'];
-    
+    var m = 0;
+    setInterval(function(){
+      var url = 'url(../../assets/image/' + images[(m++) % images.length] + ')';
+      $('#box6').css('background-image', url);
+    }, 5000);
   </script>
 
 </body>
