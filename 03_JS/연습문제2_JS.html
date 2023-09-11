@@ -101,7 +101,7 @@
       display: flex;
       justify-content: center;
     }
-    #thumbnails > li > img {
+    #thumbnails > li {
       width: 96px;
       height: 64px;
       margin: 10px 10px 0 10px;
@@ -114,15 +114,16 @@
     
     var ul = document.getElementById('thumbnails');
     
-    ul.innerHTML += '<li><img src="../../assets/image/fruit1.jpg" id="1"></img></li>';
-    ul.innerHTML += '<li><img src="../../assets/image/fruit2.jpg" id="2"></img></li>';
-    ul.innerHTML += '<li><img src="../../assets/image/fruit3.jpg" id="3"></img></li>';
-    ul.innerHTML += '<li><img src="../../assets/image/fruit4.jpg" id="4"></img></li>';
-    ul.innerHTML += '<li><img src="../../assets/image/fruit5.jpg" id="5"></img></li>';
-    
-    document.getElementById('1') .addEventListener('click', function(){
-      document.getElementById('origin').innerHTML('<img src="../../assets/image/fruit1.jpg" id="1"></img>');
-    })
+    for(let i = 1; i <= 5; i++){
+      ul.innerHTML += '<li id=' + i + '></li>';
+      document.getElementById(i).style.backgroundImage = 'url(../../assets/image/fruit' + i + '.jpg)';
+    }
+
+    for(let j = 1; j <= 5; j++){
+      document.getElementById(j).addEventListener('click', function(){
+        document.getElementById('origin').style.backgroundImage = document.getElementById(j).style.backgroundImage;
+      })      
+    }
 
   </script>
 
@@ -160,11 +161,26 @@
     #box4 > div input[type=checkbox] {
       display: none;
     }
-    #box4 label.checked {
+    #box4 input[type=checkbox]:checked + label {
       background-image: url(../../assets/image/check2.png);
     }
   </style>
   <script>
+
+    var chkAll = document.getElementById('chk_all');
+    var chkEach = document.getElementsByClassName('chk_each');
+
+    chkAll.addEventListener('click', function(){
+      for(let i = 0; i < chkEach.length; i++){
+        chkEach[i].checked = chkAll.checked;
+      }
+    })
+
+    for(let j = 0; j < chkEach.length; j++){
+      
+    }
+
+    
 
   </script>
 
