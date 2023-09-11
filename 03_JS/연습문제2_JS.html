@@ -176,15 +176,21 @@
       }
     })
 
-    for(let j = 0; j < chkEach.length; j++){
-      
+    for(let i = 0; i < chkEach.length; i++){
+      chkEach[i].addEventListener('click', function(){
+        let total = 0;
+        for(let j = 0; j < chkEach.length; j++){
+          total += chkEach[j].checked;
+        }
+        chkAll.checked = (total === chkEach.length);
+      })
     }
-
-    
 
   </script>
 
+
   <hr>
+
 
   <!-- 문제5. 정답 보이기/숨기기 -->
   <div id="box5">
@@ -210,9 +216,23 @@
     // 정답     :  안보임    <->  보임        변환
     // data-state="hide"이면 안보임 상태이고, data-state="show"이면 보임 상태로 처리할 것
     
+    var btn_answer = document.getElementById('btn_answer');
+    var answer = document.getElementById('answer');
+    btn_answer.addEventListener('click', function(){
+      if(btn_answer.getAttribute('value') === '정답보기'){
+        btn_answer.setAttribute('value', '정답숨기기');
+        btn_answer.setAttribute('data-state', 'show');
+        answer.style.display = 'inline';
+      } else {
+        btn_answer.setAttribute('value', '정답보기');
+        answer.setAttribute('data-state', 'hide');
+        answer.style.display = 'none';
+      }
+    })
+
   </script>
 
-  <hr>
+  <hr>  
 
   <!-- 문제6. 추첨 프로그램 -->
   <div id="box6">
@@ -224,7 +244,21 @@
     // 문제6. 아래 배열의 요소를 임의로 하나씩 선택해서 추첨 버튼을 클릭할때마다 배열에서 제거하시오.
     // 배열에서 제거된 메뉴는 선택 메뉴에서 표시하고 배열에 있는 메뉴는 남은 메뉴에서 표시하시오.
     var menu = ['제육', '순두부', '국수', '피자', '순대국', '족발'];
-    
+    var array = [];
+    var pick = document.getElementById('btn_pick');
+    pick.addEventListener('click', function(event){
+      if(menu.length === 0){
+        event.preventDefault();
+        return;
+      }
+      var random = parseInt(Math.random()*menu.length);
+      array.push(menu[random]);
+      menu.splice(random, 1);
+      
+      document.getElementById('menu_list').innerHTML = menu.toString();
+      document.getElementById('pick').innerHTML = array.toString();
+
+    })
   </script>
 
   <hr>
@@ -236,7 +270,20 @@
   </div>
   <script>
     // 문제7. 오직 한글만 검색할 수 있도록 처리하시오.
-    
+    document.getElementById('btn_naver_search').addEventListener('click', function(event){
+      var url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf&&";
+      var query = document.getElementById('query').value;
+      var validQuery = /^[가-힣]{0,}$/.test(query);
+      url += 'query=' + query;
+      if(!validQuery){
+        alert('오직 한글만 검색할 수 있습니다.');
+        event.preventDefault();
+        return;
+      }
+      location.href = url;
+    })
+
+
   </script>
 
 </body>

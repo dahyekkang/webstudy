@@ -6,6 +6,14 @@
   <title>Document</title>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+<style>
+  .good {
+    color: teal;
+  }
+  .warning {
+    color: crimson;
+  }
+</style>
 <body>
   
   <div>
@@ -24,10 +32,61 @@
     </form>
   </div>
   <script>
+    /*
     $('#id').keyup(function(){    // keyup : 아이디를 한 글자씩 칠 때 동작하는 이벤트(키가 올라올 때마다) / blur : 포커스를 잃었을 때 동작하는 이벤트
       console.log(this.value);
       //console.log($(this).val());
     })
+    */
+
+    $('#id').keyup(function(){
+      /*
+      if(this.value.length < 4){
+        $('#msg_id').text('아이디는 4글자 이상입니다.').addClass('warning');
+      } else {
+        $('#msg_id').text('').removeClass('warning');
+      }
+      */
+
+      // 아이디 입력에 따른 체크 여부
+      /*
+      var regId = /^[A-Za-z][A-Za-z0-9-_]{4,19}$/;    // 아이디는 5글자에서 20글자로 돼있음. {4,19}는 오른쪽 대괄호에만 적용됨. 대괄호 내부는 1글자다!
+      if(regId.test(this.value)){
+        $('#msg_id').text('good !').addClass('good').removeClass('warning');
+      } else {
+        $('#msg_id').text('아이디는 5~20자여야 합니다.').addClass('warning').removeClass('good');
+      }
+      */
+     
+    })
+
+    // 비밀번호 입력했으면 서브밋 해주고, 입력 안했으면 서브밋 안해주기 (글자수 상관 x)
+    $('#pw').keyup(function(){
+      if(this.value.length === 0){
+        $('#msg_pw').text('비밀번호를 입력하세요.').addClass('warning');
+      } else {
+        $('#msg_pw').text('').removeClass('warning');
+      }
+    })
+    
+    // 서브밋 방지하기
+    $('#frm_login').submit(function(event){
+      /*
+      if(!$('#msg_id').hasClass('good')){
+        alert('아이디를 확인하세요.');
+        event.preventDefault();
+        return;
+      }
+      */
+      if($('#msg_pw').hasClass('warning')){
+        alert('비밀번호를 입력하세요.');
+        event.preventDefault();
+        return;
+      }
+    })
+     
+
+
   </script>
 
 </body>
