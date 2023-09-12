@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- 2. 버튼을 클릭하면 경고창을 이용해 '전송합니다.' 메시지를 출력하는 이벤트 -->
+
+  <!-- 고전 이벤트 모델 -->
+  <!-- <div>
+    <button id="btn">전송</button>
+  </div>
+  <script>
+    document.getElementById('btn').onclick = function(){
+      alert('전송합니다.');
+    }
+  </script> -->
+
+  <!-- 표준 이벤트 모델 -->
+  <!-- <div>
+    <button id="btn">전송</button>
+  </div>
+  <script>
+    document.getElementById('btn').addEventListener('click', function(){
+      alert('전송합니다.');
+    })
+  </script> -->
+
+  <!-- 인라인 이벤트 모델 -->
+  <!-- <div>
+    <button id="btn" onclick="myFunc()">전송</button>
+  </div>
+  <script>
+    function myFunc(){
+      alert('전송합니다.');
+    }
+  </script> -->
+
+
+
+  <!-- 3. 버튼을 클릭하면 구글(https://www.google.com)로 이동하는 이벤트를 작성하고자 한다. -->
+  <!--    필요한 자바스크립트 코드를 작성하시오. -->
+
+  <!-- <div>
+    <button id="to_site">이동</button>
+  </div>
+  <script>
+    document.getElementById('to_site').addEventListener('click', function(){
+      var url = 'https://www.google.com';
+      location.href = url;
+    })
+  </script> -->
+
+
+
+  <!-- 4. 네이버 검색 엔진을 활용한 검색창 구현 -->
+  <!-- <form id="frm" action="https://search.naver.com/search.naver">
+    <input type="text" name="query" id="query">
+    <input type="button" value="네이버검색" id="btn">
+  </form>
+  <script>
+    document.getElementById('btn').onclick = function(event) {
+      alert('검색어는 ' + document.getElementById('query').value + '입니다.');
+      document.getElementById('frm').submit();
+    }
+  </script> -->
+
+</body>
+</html>

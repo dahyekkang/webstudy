@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <style>
+    /* 모든 구성요소 초기화 */
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: 'Malgun Gothic, sans-serif';
+    }
+    /* a 태그 초기화 */
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+    
+    .text {
+      width: 460px;                    /* 입력 요소 너비 */
+      height: 50px;
+      outline: 0;                     /* 눌렀을 때 보이는 테두리 숨긱기 */
+      border: 2px solid #007700;    /* 아이디,비밀번호 입력란 테두리색 */
+    }
+
+    /* body 태그 전체 배경색 */
+    body {
+      background-color: #F5F6F7;
+    }
+
+    /* 로그인 버튼 */
+    #login_btn {
+      background-color: #007700;
+      width: 460px;
+      height: 60px;
+      color: white;
+      border: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* 회원가입, 아이디/비밀번호찾기 버튼 */
+    .btn {
+      background-color: #007777;
+      border: 0;
+      width: 200px;
+      height: 50px;
+      color: white;
+      font-size: 17px;
+    }
+    .btn_pl {
+      display: block;
+      margin-left: 10px;
+    }
+
+    /* 아이디/비밀번호 테두리색 변경 */
+    .text:focus {
+      border-color: #FF8800;
+    }
+
+    /* 마우스 포인터 */
+    .text:hover {
+      cursor: pointer;
+    }
+
+    /* 회원구분 글씨 두께 */
+    #chk {
+      font-weight: 600;
+    }
+    label {
+      font-size: 14px;
+    }
+    
+    /* 회원구분과 로그인박스 사이 간격*/
+    .member {
+      margin-bottom: 5px;
+    }
+
+    /* 아이디 박스 */
+    #id {
+      margin-bottom: 5px;
+      line-height: 50px;
+      padding-left: 10px;
+    }
+
+    /* 비밀번호 박스 */
+    #pw {
+      margin-bottom: 15px;
+      line-height: 50px;
+      padding-left: 10px;
+    }
+
+    /* 로고 위치 조정 */
+    img {
+      display: block;
+      margin: 100px auto 70px;
+    }
+
+    /* 가운데, 나머지 부분 너비조정, 가운데정렬 */
+    section, footer {
+      width: 460px;
+      margin: 0 auto;
+    }
+
+    /* footer 높이조정, footer와 section 사이 간격 조정 */
+    footer {
+      height: 300px;
+      padding-top: 50px;
+    }
+
+    /* 나머지 부분 좌우 배치 */
+    .member_plus, .find_idpw {
+      float: left;
+      width: 50%;
+      height: 200px;
+      padding: 5px;
+    }
+
+
+    /* 두꺼운 글씨 */
+    .ques {
+      font-weight: 700;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    /* 작은 글씨 */
+    .hint {
+      font-size: 10px;
+      color:gray;
+      text-align: center;
+      margin-bottom: 3px;
+    }
+
+    /* 아이디체크 클래스 */
+    .warning {
+      color: #FF0000;
+      font-size: 14px;
+    }
+    .good {
+      color: #0000FF;
+      font-size: 14px;
+    }
+
+
+  </style>
+  
+  <div class="wrap">
+    <!-- 로고이미지 -->
+    <header>
+      <a href="https://www.gdu.co.kr/main/main.html">
+        <img src="https://www.gdu.co.kr/images/main/logo.png">
+      </a>
+    </header>
+
+
+    <!-- 로고이미지 아래부터 로그인 버튼까지 -->
+    <section>
+      <!-- 회원구분 -->
+      <div class="member">
+        <span id="chk">※ 회원구분을 위해 체크해 주세요 </span>
+        <input type="radio" name="member" value="student" id="student">
+        <label for="student">수강생</label>
+        <input type="radio" name="member" value="general" id="general">
+        <label for="general">일반회원</label>
+      </div>
+
+      <!-- 로그인버튼 -->
+      <div class="login_wrap">
+        <form action="/" method="post" id="frm1">
+          <input type="text" id="id" name="id" class="text" placeholder="아이디">
+          <div id="msg_id"></div>
+          <input type="password" id="pw" name="pw" class="text" placeholder="●●●●">
+          <button type="submit" id="login_btn">로그인</button>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- 나머지 영역 -->
+    <footer>
+      <div class="member_plus">
+        <div class="member_content">
+          <div class="ques">아직 회원이 아닌가요?</div>
+          <div class="hint">가입하면 다양한 서비스 이용이 가능합니다.</div>
+        </div>
+        <div class="btn_pl">
+          <button type="submit" class="btn" id="member_btn">회원가입</button>
+        </div>
+      </div>
+      <div class="find_idpw">
+        <div class="find_content">
+          <div class="ques">아이디/비밀번호를 잊으셨나요?</div>
+          <div class="hint">간단하게 아이디/비밀번호를 찾을 수 있습니다.</div>
+        </div>
+        <div class="btn_pl">
+          <button type="submit" class="btn" id="find_btn">아이디/비밀번호 찾기</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var btn = document.getElementsByClassName('btn');
+    for(let i = 0; i < btn.length; i++){
+      btn[i].addEventListener('click', function(){
+        var url = 'javascript:void(0)';
+        location.href = url;
+      })
+    }
+  </script>
+
+  <script>
+    var id = document.getElementById('id');
+    var msg_id = document.getElementById('msg_id');
+    id.addEventListener('keyup', function(){
+      if(this.value.length < 4 && this.value.length > 0){
+        msg_id.setAttribute('class', 'warning');
+        msg_id.textContent = '아이디는 4자 이상입니다.';
+      } else if(this.value.length >= 4){
+        msg_id.setAttribute('class', 'good');
+        msg_id.textContent = '정상적인 아이디입니다.';
+      } else {
+        msg_id.textContent = '';
+      }
+    })
+  </script>
+
+  <script>
+    var pw = document.getElementById('pw');
+    document.getElementById('login_btn').addEventListener('click', function(event){
+      if(id.value.length < 4){
+        alert('아이디를 확인하세요.');
+        event.preventDefault();
+        return;
+      }
+      if(pw.value.length === 0){
+        alert('비밀번호를 입력하세요.');
+        event.preventDefault();
+        return;
+      }
+    })
+  </script>
+
+</body>
+</html>
