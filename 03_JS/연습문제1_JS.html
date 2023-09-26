@@ -56,14 +56,11 @@
       </ul>
     */
     var menu = ['Models', 'Find & Buy', 'Electromobility', 'Services', 'Discover'];
-
-    var str = '';
-    str += '<ul class="gnb">';
-    for(let i = 0; i < menu.length; i++){
+    var str = '<ul class="gnb">';
+    for(let i = 0; i < menu.length; i++) {
       str += '<li><a href="#">' + menu[i] + '</a></li>';
     }
     str += '</ul>';
-
     document.getElementById('box1').innerHTML = str;
 
   </script>
@@ -87,10 +84,10 @@
   <script>
     // 문제2. 0.5초마다 colors 배열의 각 요소를 box2의 background-color로 지정하시오.
     var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple'];
-    var n = 0;
-    var timeId = setInterval(function(){
-      document.getElementById('box2').style.backgroundColor = colors[n % 7];
-      n++;
+    var i = 0;
+    setInterval(function(){
+      document.getElementById('box2').style.backgroundColor = colors[i++];
+      i %= colors.length;  //  인덱스를 0 ~ 6으로 순환하기 위한 연산
     }, 500);
 
   </script>
@@ -149,14 +146,15 @@
     document.getElementById('lastBuildDate').textContent = result.lastBuildDate;
     document.getElementById('total').textContent = result.total;
     var str = '';
-    for(let i = 0; i < result.items.length; i++){
+    var items = result.items;
+    for (let i = 0; i < items.length; i++) {
       str += '<tr>';
-      str += '<td>' + result.items[i].title + '</td>';
-      str += '<td>' + result.items[i].link + '</td>';
-      str += '<td>' + result.items[i].description + '</td>';
+      str += '<td>' + items[i].title + '</td>';
+      str += '<td>' + items[i].link + '</td>';
+      str += '<td>' + items[i].description + '</td>';
       str += '</tr>';
     }
-    document.getElementById('items').innerHTML = str;
+    document.getElementById('items').innerHTML = str;    
 
   </script>
 
@@ -211,15 +209,17 @@
       }
     ];
 
-    var str = '';
-    str += '<ul class="product_list">';
-    for(let i = 0; i < products.length; i++){
-      str += '<li>' + products[i].name + '<br>' + products[i].price + '<br>' + products[i].star + '<br></li>';
-      }
+    var str = '<ul class="product_list">';
+    for (let i = 0; i < products.length; i++) {
+      str += '<li>';
+      str += products[i].name + '<br>';
+      str += products[i].price + '<br>';
+      str += products[i].star + '<br>';
+      str += '</li>';
+    }
     str += '</ul>';
+    document.getElementById('box4').innerHTML = str;    
 
-    document.getElementById('box4').innerHTML = str;
-    
   </script>
 
 
@@ -246,46 +246,35 @@
   </div>
   <script>
     // 문제5. 임의의 Student 객체 3개를 생성해서 student_info에 표시하시오.
-    var Student = function(name, kor, eng, mat){
+    function Student(name, kor, eng, mat) {
       this.name = name;
       this.kor = kor;
       this.eng = eng;
       this.mat = mat;
+      this.ave = (kor + eng + mat) / 3;
+      if(this.ave >= 90) this.grade = 'A';
+      else if(this.ave >= 80) this.grade = 'B';
+      else if(this.ave >= 70) this.grade = 'C';
+      else if(this.ave >= 70) this.grade = 'C';
+      else this.grade = 'F';
     }
-
     var students = [
       new Student('james', 70, 71, 73),
       new Student('alice', 80, 82, 83),
       new Student('tomas', 91, 92, 94)
     ];
-    
-    var str ='';
-    var mean = 0;
-    for(let i = 0; i < students.length; i++){
+    var str = '';
+    for (let i = 0; i < students.length; i++) {
       str += '<tr>';
-      mean = 0;
-      for(let j in students[i]){
-        if(students[i][j] >= 0 && students[i][j] <= 100){
-          mean += students[i][j];
-        }
-        str += '<td>' + students[i][j] + '</td>';
-      }
-      mean /= 3;
-      str += '<td>' + mean + '</td>';
-
-      if(mean >= 90){
-        grade = 'A';
-      } else if(mean >= 80){
-        grade = 'B';
-      } else{
-        grade = 'C';
-      }
-      str += '<td>' + grade + '</td>';
+      str += '<td>' + students[i].name + '</td>';
+      str += '<td>' + students[i].kor + '</td>';
+      str += '<td>' + students[i].eng + '</td>';
+      str += '<td>' + students[i].mat + '</td>';
+      str += '<td>' + students[i].ave + '</td>';
+      str += '<td>' + students[i].grade + '</td>';
       str += '</tr>';
     }
-
-    document.getElementById('student_info').innerHTML = str;
-
+    document.getElementById('student_info').innerHTML = str;    
   </script>
 
   <hr>
@@ -303,12 +292,11 @@
   <script>
     // 문제6. images 배열의 임의의 이미지를 배경으로 사용하시오.
     var images = ['animal1.jpg', 'animal2.jpg', 'animal3.jpg', 'animal4.jpg', 'animal5.jpg'];
-    var n = 0;
+    var box6 = document.getElementById('box6');
+    box6.style.backgroundImage = 'url(../../assets/image/' + images[0] + ')';
     setInterval(function(){
-      var str = '';
-      str += 'url(../../assets/image/' + images[n % 5] + ')';
-      document.getElementById('box6').style.backgroundImage = str;
-      n++;
+      let i = Math.floor(Math.random() * images.length);
+      box6.style.backgroundImage = 'url(../../assets/image/' + images[i] + ')';
     }, 5000);
   </script>
 
