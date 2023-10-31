@@ -10,14 +10,12 @@ const Ex02 = (props) => {
     const {변수1, 변수2, 변수3} = 객체;
   */
  
- //const {name, age} = props.per;
- const person = props.per;
+  const {name, age} = props.per;
 
   return (
     <div className="ex02">
       <h1>Ex02</h1>
-      {/* <div>{name}, {age}</div> */}
-      <div>{person.name}, {person.age}</div>
+      {<div>{name}, {age}</div>}
     </div>
   );
 };
